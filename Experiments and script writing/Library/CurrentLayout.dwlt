@@ -40,8 +40,8 @@ MonoBehaviour:
     y: 0
     width: 409
     height: 574
-  m_MinSize: {x: 204, y: 221}
-  m_MaxSize: {x: 4004, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_MinSize: {x: 436, y: 271}
   m_MaxSize: {x: 14006, y: 10021}
   vertical: 0
-  controlID: 100
+  controlID: 78
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 713, y: 492}
   m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
-  controlID: 51
+  controlID: 130
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,8 +139,8 @@ MonoBehaviour:
     y: 0
     width: 555
     height: 947
-  m_MinSize: {x: 277, y: 71}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -303,8 +303,8 @@ MonoBehaviour:
     y: 0
     width: 956
     height: 574
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -439,16 +439,15 @@ MonoBehaviour:
     - Assets/scripts
   m_ViewMode: 0
   m_StartGridSize: 64
-  m_LastFolders:
-  - Assets
+  m_LastFolders: []
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: H:\Experiments and script writing
+  m_LastProjectPath: H:\GitHub\masterUnity\Experiments and script writing
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 44280000
     m_LastClickedID: 10308
-    m_ExpandedIDs: 00000000462900004a290000ca290000f6290000122b0000
+    m_ExpandedIDs: 00000000042a0000322a0000362a0000982a0000d82b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -476,21 +475,21 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000462900004a290000ca290000f6290000122b0000
+    m_ExpandedIDs: 00000000042a0000322a0000362a0000982a0000d82b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: ShipControlScript
-      m_OriginalName: ShipControlScript
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 1790
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 3}
     m_SearchString: 
@@ -594,9 +593,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: fe060000
-    m_LastClickedID: 0
-    m_ExpandedIDs: 98fbffff000000007c2a0000
+    m_SelectedIDs: 122b0000
+    m_LastClickedID: 11026
+    m_ExpandedIDs: a0f5ffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -680,7 +679,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.36381698, y: 0.60003346, z: -0.35263032, w: -0.619071}
     speed: 2
-    m_Value: {x: -0.36381698, y: 0.60003346, z: -0.35263032, w: -0.619071}
+    m_Value: {x: -0.363817, y: 0.60003346, z: -0.35263032, w: -0.61907107}
   m_Size:
     m_Target: 45.318718
     speed: 2

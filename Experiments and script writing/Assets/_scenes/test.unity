@@ -377,6 +377,7 @@ GameObject:
   - component: {fileID: 540582005}
   - component: {fileID: 540582004}
   - component: {fileID: 540582003}
+  - component: {fileID: 540582007}
   m_Layer: 0
   m_Name: Add game control scripts here
   m_TagString: Untagged
@@ -450,6 +451,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &540582007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 540582002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc97ea3fc7e09024b94a8e2775e7b02c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &603623263 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: ba9b568199b00a24bb6a02b8276ddee1, type: 3}
