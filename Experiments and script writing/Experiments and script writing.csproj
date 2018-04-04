@@ -297,6 +297,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\scripts\PauseMenuControl.cs" />
     <Compile Include="Assets\scripts\ShipControlScript.cs" />
     <Compile Include="Assets\scripts\TextUpdateScript.cs" />
     <Compile Include="Assets\scripts\ToggleCursor.cs" />
