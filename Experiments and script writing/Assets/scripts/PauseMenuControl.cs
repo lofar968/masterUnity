@@ -2,15 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PauseMenuControl : MonoBehaviour {
+using UnityEngine.SceneManagement; // for Time.Timescale
+using UnityEngine.UI; // for RawImage and Texture
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+public class PauseMenuControl : MonoBehaviour {
+    // Update is called once per frame
+    private bool gameIsPaused = false;
+
+    RawImage m_RawImage;
+    public Texture blank_texture;
+    public Texture paused_texture;
+
+    void Start()
+    {
+        m_RawImage = GetComponent<RawImage>(); //assigns mRI whatever RI object this is placed on
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (gameIsPaused)
+            {
+                Time.timeScale = 1.0f;
+                m_RawImage.texture = blank_texture; //makes image invisible
+                gameIsPaused = false;
+            }
+            else
+            {
+                Time.timeScale = 0.0f;
+                m_RawImage.texture = paused_texture; //makes image visible
+                gameIsPaused = true;
+            }
+        }
+    }
 }
