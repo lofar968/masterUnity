@@ -427,9 +427,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 564254486}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ce069fe2705d1f41ad261366f964c58, type: 3}
+  m_Script: {fileID: 11500000, guid: d2e7b8da3ae2bab448e44215c4167e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blank_texture: {fileID: 2800000, guid: 020b8301145c98b41b3c0cbd4bdec5c5, type: 3}
+  paused_texture: {fileID: 2800000, guid: 6a94e130e05a4514d8da6b1c0839ab47, type: 3}
 --- !u!114 &564254489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,7 +451,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 2800000, guid: 6a94e130e05a4514d8da6b1c0839ab47, type: 3}
+  m_Texture: {fileID: 2800000, guid: 020b8301145c98b41b3c0cbd4bdec5c5, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
