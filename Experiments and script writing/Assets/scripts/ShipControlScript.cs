@@ -84,7 +84,7 @@ public class ShipControlScript : MonoBehaviour {
     {
         float deg = rad * 180 / Mathf.PI;
         return deg;
-    }
+    } 
 
     void SetShipVelocity() //VELOCITY VELOCITY VELOCITY VELOCITY VELOCITY VELOCITY VELOCITY VELOCITY VELOCITY VELOCITY VELOCITY VELOCITY VELOCITY VELOCITY VELOCITY VELOCITY VELOCITY VELOCITY VELOCITY 
     {
@@ -227,6 +227,8 @@ public class ShipControlScript : MonoBehaviour {
         if (OnSpeedUpdate != null)
             OnSpeedUpdate(CurrentSpeed);
     }
+    
+    
     // FixedUpdate is called once per physics frame
     void FixedUpdate() {
         SetShipVelocity();

@@ -19,19 +19,21 @@ public class PauseMenuControl : MonoBehaviour {
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
         {
             if (gameIsPaused)
             {
                 Time.timeScale = 1.0f;
                 m_RawImage.texture = blank_texture; //makes image invisible
                 gameIsPaused = false;
+                Cursor.visible = false;
             }
             else
             {
                 Time.timeScale = 0.0f;
                 m_RawImage.texture = paused_texture; //makes image visible
                 gameIsPaused = true;
+                Cursor.visible = true;
             }
         }
     }

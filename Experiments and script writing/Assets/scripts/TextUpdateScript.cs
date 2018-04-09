@@ -26,6 +26,6 @@ public class TextUpdateScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AssignedText.text = "Speed" + Speed + "m/s";
+        AssignedText.text = "Speed: " + Speed + " m/s";
     }
 }
