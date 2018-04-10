@@ -27,6 +27,7 @@ public class PauseMenuControl : MonoBehaviour {
                 m_RawImage.texture = blank_texture; //makes image invisible
                 gameIsPaused = false;
                 Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
             }
             else
             {
@@ -34,6 +35,7 @@ public class PauseMenuControl : MonoBehaviour {
                 m_RawImage.texture = paused_texture; //makes image visible
                 gameIsPaused = true;
                 Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
             }
         }
     }

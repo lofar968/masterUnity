@@ -485,19 +485,26 @@ MonoBehaviour:
   m_Text: 'https://docs.unity3d.com/ScriptReference/SceneManagement.SceneManager.LoadScene.html-->Contains
     Stuff for loading scenes w/ scripts
 
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     https://answers.unity.com/questions/7544/how-do-i-pause-my-game.html --> Good
     method for pausing a game, along with required safety.
 
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    [Insert thing here]
+    https://docs.unity3d.com/ScriptReference/GameObject.SendMessage.html --> Sends
+    a message, in a less complicated way
 
 
-    [Insert thing here]
+    https://docs.unity3d.com/ScriptReference/MonoBehaviour.html --> Recieves said
+    message
 
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    [Insert thing here]
+    https://forum.unity.com/threads/how-to-turn-on-off-button-visibility.290317/ -->
+    Button stuff
 
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     [Insert thing here]
 
