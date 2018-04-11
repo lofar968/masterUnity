@@ -16,6 +16,8 @@ public class PauseMenuControl : MonoBehaviour {
     void Start()
     {
         m_RawImage = GetComponent<RawImage>(); //assigns mRI whatever RI object this is placed on
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
     void Update()
     {
