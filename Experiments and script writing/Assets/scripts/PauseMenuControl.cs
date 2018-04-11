@@ -12,24 +12,34 @@ public class PauseMenuControl : MonoBehaviour {
     RawImage m_RawImage;
     public Texture blank_texture;
     public Texture paused_texture;
-
+    public GameObject[] pauseButton = new GameObject[3]; // if there wind up being more than 3 bts, CHANGE THIS #.
+    
     void Start()
     {
         m_RawImage = GetComponent<RawImage>(); //assigns mRI whatever RI object this is placed on
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        foreach (GameObject element in pauseButton)
+        {
+            element.SetActive(false);
+        }
     }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
         {
-            if (gameIsPaused)
+            if (gameIsPaused) 
             {
                 Time.timeScale = 1.0f;
                 m_RawImage.texture = blank_texture; //makes image invisible
                 gameIsPaused = false;
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
+
+                foreach (GameObject element in pauseButton)
+                {
+                    element.SetActive(false);
+                }
             }
             else
             {
@@ -38,6 +48,11 @@ public class PauseMenuControl : MonoBehaviour {
                 gameIsPaused = true;
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
+
+                foreach (GameObject element in pauseButton)
+                {
+                    element.SetActive(true);
+                }
             }
         }
     }
