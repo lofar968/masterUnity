@@ -15,20 +15,20 @@ public class AiControl : MonoBehaviour {
     void start () {
       Debug.Log("Ai Initialized");
 
-      AiCount = GameObject.FindGameObjectsWithTag("Ai");
+      //AiCount = GameObject.FindGameObjectsWithTag("Ai");
     }
 
     //Called once per frame
     void Update () {
 
     }
-
+    /*
     public void waveFinished ()
     {
         if (AiCount == 0)
         {
             //end game/ Return to titlescreen
         }
-    }
+    } */
 
 }
