@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class AiControl : MonoBehaviour {
 
+    public int rotSpeed = 0;
     public GameObject player;
-    public int[] AiCount; //Yeah, this is how you declare arrays in C#. Don't ask me why, but it is a bit annoying to remember.
+    public int AiCount; //Yeah, this is how you declare arrays in C#. Don't ask me why, but it is a bit annoying to remember.
     /*
     an example of an array: 
     private int[] print = new int[] { 5, 8, 3, 9 }; // yeah, C# will autofill array size if one is not explicitly given. This is normal as far as I know, but thought I'd mention it anyways.
@@ -30,5 +33,13 @@ public class AiControl : MonoBehaviour {
             //end game/ Return to titlescreen
         }
     } */
+
+    private void FixedUpdate()
+    {
+        Vector3 playerDir = player.transform.position - transform.position;
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, playerDir, rotSpeed, 0.0f);
+
+        transform.rotation = Quaternion.LookRotation(newDir);
+    }
 
 }
