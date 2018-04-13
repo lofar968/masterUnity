@@ -144,7 +144,7 @@ public class ShipControlScript : MonoBehaviour {
         float XrotForce = 0;
         float YrotForce = 0;
         float ZrotForce = 0;
-        { //block edits XYZ rit firces dependant on FacesT and UaxisIs vars
+        { //block edits XYZ rot forces dependent on FacesT and UaxisIs vars
             if (facesX == 1 || facesX == -1)
             {
                 XrotForce = Spin_Direction * RotateSpeed * facesX;
