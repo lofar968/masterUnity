@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 public class ShipControlScript : MonoBehaviour {
     //||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||
-    private float Vx = 0;
-    private float Vy = 0;
-    private float Vz = 0;
-    private float FPS = 0;
     public int facesX = 0;
     public int facesY = 0;
     public int facesZ = 0;
@@ -232,8 +228,6 @@ public class ShipControlScript : MonoBehaviour {
     // FixedUpdate is called once per physics frame
     void FixedUpdate() {
         SetShipVelocity();
-
-        FPS = 1.0f / Time.deltaTime; //jic this is needed
 
         GetMouseInput();
 
