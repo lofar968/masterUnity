@@ -59,29 +59,11 @@ public class PauseMenuControl : MonoBehaviour {
         {
             if (gameIsPaused) 
             {
-                Time.timeScale = 1.0f;
-                m_RawImage.texture = blank_texture; //makes image invisible
-                gameIsPaused = false;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-
-                foreach (GameObject element in pauseButton)
-                {
-                    element.SetActive(false);
-                }
+                Continue();
             }
             else
             {
-                Time.timeScale = 0.7f;
-                m_RawImage.texture = paused_texture; //makes image visible
-                gameIsPaused = true;
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-
-                foreach (GameObject element in pauseButton)
-                {
-                    element.SetActive(true);
-                }
+                Paused();
             }
         }
     }
