@@ -4,11 +4,11 @@ using UnityEngine;
 
 
 
-public class AiControl : MonoBehaviour {
+public class AiControlScript : MonoBehaviour {
 
     public int rotSpeed = 0;
-    public GameObject player;
-    public int AiCount; //Yeah, this is how you declare arrays in C#. Don't ask me why, but it is a bit annoying to remember.
+    public GameObject player = GameObject.FindWithTag("PlayerEntity");
+    public int AiCount;
     /*
     an example of an array: 
     private int[] print = new int[] { 5, 8, 3, 9 }; // yeah, C# will autofill array size if one is not explicitly given. This is normal as far as I know, but thought I'd mention it anyways.
@@ -17,14 +17,20 @@ public class AiControl : MonoBehaviour {
     //Initialization
     void start () {
       Debug.Log("Ai Initialized");
-
+        Debug.Log(player);
       //AiCount = GameObject.FindGameObjectsWithTag("Ai");
     }
 
     //Called once per frame
     void Update () {
 
+        /*
+        if(GameObject.FindGameObjectsWithTag("Ai").Length > 0)
+        {
+            AiCount++;
+        }*/
     }
+
     /*
     public void waveFinished ()
     {
