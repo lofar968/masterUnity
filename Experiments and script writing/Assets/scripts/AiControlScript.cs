@@ -7,7 +7,7 @@ using UnityEngine;
 public class AiControlScript : MonoBehaviour {
 
     public int rotSpeed = 0;
-    public GameObject player = GameObject.FindWithTag("PlayerEntity");
+    public GameObject player;
     public int AiCount;
     /*
     an example of an array: 
@@ -16,7 +16,8 @@ public class AiControlScript : MonoBehaviour {
     */
     //Initialization
     void start () {
-      Debug.Log("Ai Initialized");
+        //player = GameObject.FindWithTag("PlayerEntity");
+        Debug.Log("Ai Initialized");
         Debug.Log(player);
       //AiCount = GameObject.FindGameObjectsWithTag("Ai");
     }
@@ -43,7 +44,7 @@ public class AiControlScript : MonoBehaviour {
     private void FixedUpdate()
     {
         Vector3 playerDir = player.transform.position - transform.position;
-        Vector3 newDir = Vector3.RotateTowards(transform.forward, playerDir, rotSpeed, 0.0f);
+        Vector3 newDir = Vector3.RotateTowards(transform.up, playerDir, rotSpeed, 0.0f);
 
         transform.rotation = Quaternion.LookRotation(newDir);
     }

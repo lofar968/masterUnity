@@ -16,8 +16,8 @@ public class ShipControlScript : MonoBehaviour {
     public float MaxSpeed = 0;
     public float Accelleration = 0;
     public float CurrentSpeed = 0;
-    private float oldSpeed = 0;
-    private Vector3 tempvelocity = Vector3.zero;
+    //private float oldSpeed = 0;
+    //private Vector3 tempvelocity = Vector3.zero;
     public float Mouse_X_Distance = 0;
     public float Mouse_Y_Distance = 0;
     public float Delta_Mouse_Position = 1;
