@@ -14,6 +14,11 @@ public class AiControlScript : MonoBehaviour {
     private int[] print = new int[] { 5, 8, 3, 9 }; // yeah, C# will autofill array size if one is not explicitly given. This is normal as far as I know, but thought I'd mention it anyways.
     Debug.Log(print[#]); // # is anything between 0-3, ofc.
     */
+
+    void Awake()
+    {
+        rotSpeed = 5;
+    }
     //Initialization
     void start () {
         //player = GameObject.FindWithTag("PlayerEntity");
