@@ -9,12 +9,11 @@ public class AiControlScript : MonoBehaviour {
     private Transform target;
     private Transform myTransform;
     public int AiCount;
-    public GameObject target = new GameObject("target");
+    
 
     //Distances
     public float fireDist;
     public int minChaseDist = 1000;
-
 
     //Speeds
     public int rotSpeed = 0;
@@ -26,13 +25,12 @@ public class AiControlScript : MonoBehaviour {
     {
         rotSpeed = 5;
     }
-    //Initialization
+
     void start () {
 
-       
+        target = GameObject.FindGameObjectWithTag("PlayerEntity").transform;
 
         Debug.Log("Ai Initialized");
-      //AiCount = GameObject.FindGameObjectsWithTag("Ai");
     }
 
     //Called once per frame
@@ -49,16 +47,12 @@ public class AiControlScript : MonoBehaviour {
         }
     } */
 
-   
+
 
     private void FixedUpdate()
     {
         myTransform = this.transform;
         var targetDist = (target.position - myTransform.position).magnitude;
-
-        
-
-        //target = GameObject.FindGameObjectWithTag("PlayerEntity").transform;
 
         if (targetDist <= minChaseDist)
         {
@@ -69,7 +63,7 @@ public class AiControlScript : MonoBehaviour {
                 moveSpeed = maxSpeed;
             }
 
-            if (moveSpeed < -maxSpeed) 
+            if (moveSpeed < -maxSpeed)
             {
                 moveSpeed = -maxSpeed;
             }
@@ -77,12 +71,6 @@ public class AiControlScript : MonoBehaviour {
             Vector3 playerDir = target.transform.position - transform.position;
             Vector3 newDir = Vector3.RotateTowards(transform.up, playerDir, rotSpeed, 0.0f);
             transform.rotation = Quaternion.LookRotation(newDir);
-    }
-
         }
-
-        
-
-
-
+    }
 }
