@@ -6,35 +6,36 @@ using UnityEngine;
 
 public class AiControlScript : MonoBehaviour {
 
-    public int rotSpeed = 0;
-    public GameObject player;
+    private Transform target;
+    private Transform myTransform;
     public int AiCount;
-    /*
-    an example of an array: 
-    private int[] print = new int[] { 5, 8, 3, 9 }; // yeah, C# will autofill array size if one is not explicitly given. This is normal as far as I know, but thought I'd mention it anyways.
-    Debug.Log(print[#]); // # is anything between 0-3, ofc.
-    */
+    
+
+    //Distances
+    public float fireDist;
+    public int minChaseDist = 1000;
+
+    //Speeds
+    public int rotSpeed = 0;
+    public float maxSpeed = 50;
+    public float acceleration = 1.5f;
+    public float moveSpeed = 0.0f;
 
     void Awake()
     {
         rotSpeed = 5;
     }
-    //Initialization
+
     void start () {
-        //player = GameObject.FindWithTag("PlayerEntity");
+
+        target = GameObject.FindGameObjectWithTag("PlayerEntity").transform;
+
         Debug.Log("Ai Initialized");
-        Debug.Log(player);
-      //AiCount = GameObject.FindGameObjectsWithTag("Ai");
     }
 
     //Called once per frame
     void Update () {
 
-        /*
-        if(GameObject.FindGameObjectsWithTag("Ai").Length > 0)
-        {
-            AiCount++;
-        }*/
     }
 
     /*
@@ -46,12 +47,30 @@ public class AiControlScript : MonoBehaviour {
         }
     } */
 
+
+
     private void FixedUpdate()
     {
-        Vector3 playerDir = player.transform.position - transform.position;
-        Vector3 newDir = Vector3.RotateTowards(transform.up, playerDir, rotSpeed, 0.0f);
+        myTransform = this.transform;
+        var targetDist = (target.position - myTransform.position).magnitude;
 
-        transform.rotation = Quaternion.LookRotation(newDir);
+        if (targetDist <= minChaseDist)
+        {
+            myTransform.position += myTransform.forward * acceleration * Time.deltaTime;
+
+            if (moveSpeed > maxSpeed)
+            {
+                moveSpeed = maxSpeed;
+            }
+
+            if (moveSpeed < -maxSpeed)
+            {
+                moveSpeed = -maxSpeed;
+            }
+
+            Vector3 playerDir = target.transform.position - transform.position;
+            Vector3 newDir = Vector3.RotateTowards(transform.up, playerDir, rotSpeed, 0.0f);
+            transform.rotation = Quaternion.LookRotation(newDir);
+        }
     }
-
 }
