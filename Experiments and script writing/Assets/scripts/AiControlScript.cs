@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class AiControlScript : MonoBehaviour {
 
-    private Transform target;
+    private GameObject target;
     private Transform myTransform;
-    public int AiCount;
+    public int aiCount;
     
 
     //Distances
@@ -21,6 +21,8 @@ public class AiControlScript : MonoBehaviour {
     public float acceleration = 1.5f;
     public float moveSpeed = 0.0f;
 
+
+
     void Awake()
     {
         rotSpeed = 5;
@@ -28,7 +30,7 @@ public class AiControlScript : MonoBehaviour {
 
     void start () {
 
-        target = GameObject.FindGameObjectWithTag("PlayerEntity").transform;
+        target = GameObject.FindGameObjectWithTag("PlayerEntity");
 
         Debug.Log("Ai Initialized");
     }
@@ -48,11 +50,22 @@ public class AiControlScript : MonoBehaviour {
     } */
 
 
-
-    private void FixedUpdate()
+    void BlockA()
     {
-        myTransform = this.transform;
-        var targetDist = (target.position - myTransform.position).magnitude;
+        //flow chart referrence
+    }
+
+
+    void RotateTowardsPlayer()
+    {
+        Vector3 playerDir = target.transform.position - transform.position;
+        Vector3 newDir = Vector3.RotateTowards(transform.up, playerDir, rotSpeed, 0.0f);
+        transform.rotation = Quaternion.LookRotation(newDir);
+    }
+
+    void ChasePlayer()
+    {
+        var targetDist = (target.transform.position - myTransform.position).magnitude;
 
         if (targetDist <= minChaseDist)
         {
@@ -67,10 +80,17 @@ public class AiControlScript : MonoBehaviour {
             {
                 moveSpeed = -maxSpeed;
             }
-
-            Vector3 playerDir = target.transform.position - transform.position;
-            Vector3 newDir = Vector3.RotateTowards(transform.up, playerDir, rotSpeed, 0.0f);
-            transform.rotation = Quaternion.LookRotation(newDir);
         }
+    }
+
+
+
+    private void FixedUpdate()
+    {
+        myTransform = this.transform;
+
+        ChasePlayer();
+        RotateTowardsPlayer();
+
     }
 }
