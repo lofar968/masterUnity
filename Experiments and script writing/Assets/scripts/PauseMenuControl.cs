@@ -13,7 +13,8 @@ public class PauseMenuControl : MonoBehaviour {
     public Texture blank_texture;
     public Texture paused_texture;
     public GameObject[] pauseButton = new GameObject[3]; // if there ever was more than 3 bts, CHANGE THIS #. Seems I may be able to in Unity.
-    
+    public GameObject[] disableOnLoad = new GameObject[3];
+
     void Start()
     {
         m_RawImage = GetComponent<RawImage>(); //assigns mRI whatever RI object this is placed on
@@ -24,6 +25,11 @@ public class PauseMenuControl : MonoBehaviour {
         {
             element.SetActive(false);
         }
+        foreach (GameObject element in disableOnLoad)
+        {
+            element.SetActive(false);
+        }
+        Time.timeScale = 1.0f;
     }
     public void Continue()
     {
@@ -34,6 +40,10 @@ public class PauseMenuControl : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
 
         foreach (GameObject element in pauseButton)
+        {
+            element.SetActive(false);
+        }
+        foreach (GameObject element in disableOnLoad)
         {
             element.SetActive(false);
         }
