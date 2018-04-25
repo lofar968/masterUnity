@@ -28,7 +28,7 @@ public class AiControlScript : MonoBehaviour {
         rotSpeed = 5;
     }
 
-    void Start () {
+    void start () {
 
         target = GameObject.FindGameObjectWithTag("PlayerEntity");
 
