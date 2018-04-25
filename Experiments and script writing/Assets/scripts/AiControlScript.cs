@@ -7,19 +7,19 @@ using UnityEngine;
 public class AiControlScript : MonoBehaviour {
 
     private GameObject target;
-    private Transform myTransform;
+    public Transform myTransform;
     public int aiCount;
     
 
     //Distances
     public float fireDist;
-    public int minChaseDist = 1000;
+    public int minChaseDist = 30;
 
     //Speeds
     public int rotSpeed = 0;
     public float maxSpeed = 50;
     public float acceleration = 1.5f;
-    public float moveSpeed = 0.0f;
+    public float moveSpeed = 30;
 
 
 
@@ -28,9 +28,11 @@ public class AiControlScript : MonoBehaviour {
         rotSpeed = 5;
     }
 
-    void start () {
-
+    void Start () {
+        
         target = GameObject.FindGameObjectWithTag("PlayerEntity");
+
+        //myTransform = target.transform;
 
         Debug.Log("Ai Initialized");
     }
@@ -69,7 +71,7 @@ public class AiControlScript : MonoBehaviour {
 
         if (targetDist <= minChaseDist)
         {
-            myTransform.position += myTransform.forward * acceleration * Time.deltaTime;
+            myTransform.position += myTransform.forward * moveSpeed * Time.deltaTime;
 
             if (moveSpeed > maxSpeed)
             {
