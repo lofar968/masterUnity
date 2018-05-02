@@ -1,36 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 
 
 public class AiControlScript : MonoBehaviour {
 
-    private GameObject target;
+    public Transform target;
+    Vector3 storeTarget;
+    bool savePos;
+    bool overrideTarget;
+
     private Transform myTransform;
     public int aiCount;
-    
+    int rotSpeed = 5;
 
     //Distances
     public float fireDist;
-    public int minChaseDist = 1000;
 
     //Speeds
-    public int rotSpeed = 0;
-    public float maxSpeed = 50;
-    public float acceleration = 1.5f;
-    public float moveSpeed = 0.0f;
+    Vector3 acceleration;
+    Vector3 velocity;
+    public float maxSpeed = 5f;
+    float storeMaxSpeed;
+    float targetSpeed;
+
+    Rigidbody rigidBody;
+    Rigidbody childRB;
+
+    public List<Vector3> EscapeDirections = new List<Vector3>();
 
 
 
-    void Awake()
-    {
-        rotSpeed = 5;
-    }
+    void Start () {
 
-    void start () {
+        storeMaxSpeed = maxSpeed;
+        targetSpeed = storeMaxSpeed;
 
-        target = GameObject.FindGameObjectWithTag("PlayerEntity");
+        rigidBody = GetComponent<Rigidbody>();
+        childRB = GetComponentInChildren<Rigidbody>();
 
         Debug.Log("Ai Initialized");
     }
@@ -63,7 +72,7 @@ public class AiControlScript : MonoBehaviour {
         transform.rotation = Quaternion.LookRotation(newDir);
     }
 
-    void ChasePlayer()
+    /*void ChasePlayer()
     {
         var targetDist = (target.transform.position - myTransform.position).magnitude;
 
@@ -81,15 +90,41 @@ public class AiControlScript : MonoBehaviour {
                 moveSpeed = -maxSpeed;
             }
         }
+    }*/
+
+    Vector3 MoveTowardsTarget(Vector3 target)
+    {
+        Vector3 distance = target - transform.position;
+
+        if(distance.magnitude < 25)
+        {
+            return distance.normalized * -maxSpeed;
+        }
+        else
+        {
+            return distance.normalized * maxSpeed;
+        }
     }
-
-
 
     private void FixedUpdate()
     {
         myTransform = this.transform;
 
-        ChasePlayer();
+        Debug.DrawLine(transform.position, target.position);
+
+        Vector3 forces = MoveTowardsTarget(target.position);
+
+        acceleration = forces;
+        velocity += 2 * acceleration * Time.deltaTime;
+
+        if (velocity.magnitude > maxSpeed)
+        {
+            velocity = velocity.normalized * maxSpeed;
+        }
+
+        rigidBody.velocity = velocity;
+        childRB.velocity = velocity;
+
         RotateTowardsPlayer();
 
     }
