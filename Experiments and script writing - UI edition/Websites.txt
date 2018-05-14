@@ -1,0 +1,8 @@
+https://docs.unity3d.com/ScriptReference/PlayerPrefs.SetString.html
+https://docs.unity3d.com/ScriptReference/PlayerPrefs.SetFloat.html
+https://docs.unity3d.com/ScriptReference/PlayerPrefs.SetInt.html
+https://docs.unity3d.com/ScriptReference/PlayerPrefs.Save.html
+https://docs.unity3d.com/ScriptReference/PlayerPrefs.html
+https://docs.unity3d.com/Manual/MultiSceneEditing.html
+https://forum.unity.com/threads/editor-script-how-to-access-objects-under-dontdestroyonload-while-in-play-mode.442014/
+https://answers.unity.com/questions/1072572/accessing-variables-on-a-script-on-a-dontdestroyon.html
