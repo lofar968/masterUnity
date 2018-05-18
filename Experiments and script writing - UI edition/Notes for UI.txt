@@ -1,0 +1,22 @@
+https://docs.unity3d.com/ScriptReference/PlayerPrefs.SetString.html
+https://docs.unity3d.com/ScriptReference/PlayerPrefs.SetFloat.html
+https://docs.unity3d.com/ScriptReference/PlayerPrefs.SetInt.html
+https://docs.unity3d.com/ScriptReference/PlayerPrefs.Save.html
+https://docs.unity3d.com/ScriptReference/PlayerPrefs.html
+https://docs.unity3d.com/Manual/MultiSceneEditing.html
+https://forum.unity.com/threads/editor-script-how-to-access-objects-under-dontdestroyonload-while-in-play-mode.442014/
+https://answers.unity.com/questions/1072572/accessing-variables-on-a-script-on-a-dontdestroyon.html
+==================================================================================================================
+Go to scene Main_menu and set up the "cube" to be disabled on load, THEN send a message to it, THEN test if the message was recieved:
+Testing done. Result was as expected - messages can NOT be sent to unloaded (i.e. inactive) gameobjects. Perhaps the reason the sound icon will NOT instantly update, but the music icon does, is that the loading order is something like:
+[music icon] --> [music slider] || and in there || [sound slider] --> [sound icon].
+To clarify, the problem is:
+--------------------------------------------==--------------------------------------------------------------------
+1) MI loads				    || 1) SS loads
+2) MS loads				    || 2) SS sends message to SI
+3) MS sends message to MI		    || 3) SI is not loaded, so it fails to recieve the message
+4) MI is loaded, so it recieves the message || 4) SI loads, and SS will never re-send the message
+--------------------------------------------==--------------------------------------------------------------------
+Also the sliders do NOT change value until they load. So they *need* to be loaded with the scene, and then immediatly disabled. Otherwise the player will be annoyed by the need to just enter:
+menu (nothing loaded, but must be passed through> settings (loads sound settings) > controls (loads sensitivity)
+every time they load a scene to get their settings back, despite them CLEARLY being saved.

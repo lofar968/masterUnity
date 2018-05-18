@@ -626,7 +626,7 @@ RectTransform:
   m_LocalScale: {x: 0.4727229, y: 0.47272295, z: 0.47272295}
   m_Children: []
   m_Father: {fileID: 1044428058}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2200,10 +2200,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 390180862}
   - {fileID: 1083624335}
-  - {fileID: 1583617534}
+  - {fileID: 390180862}
   - {fileID: 2045475659}
+  - {fileID: 1583617534}
   - {fileID: 1112176752}
   - {fileID: 810097732}
   m_Father: {fileID: 283976741}
@@ -2439,6 +2439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1083624335}
   - component: {fileID: 1083624336}
+  - component: {fileID: 1083624337}
   m_Layer: 5
   m_Name: Sound slider
   m_TagString: Sound_Slider
@@ -2460,7 +2461,7 @@ RectTransform:
   - {fileID: 1273881862}
   - {fileID: 969957841}
   m_Father: {fileID: 1044428058}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2526,6 +2527,24 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1083624337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1083624334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 525994fb571daac4ca732b20346d4a67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ThisSlider: {fileID: 1083624336}
+  SaveAs: Sound_volume
+  DefaultLoadedValue: 1
+  Slider_related_object: {fileID: 390180861}
+  SendTo_SRO_ToUpdate: Change_icon
+  SendTo_SRO_argument: 0
+  SendArgument: 0
 --- !u!1 &1091206127
 GameObject:
   m_ObjectHideFlags: 0
@@ -3468,6 +3487,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1421895817}
   - component: {fileID: 1421895818}
+  - component: {fileID: 1421895819}
   m_Layer: 5
   m_Name: Sens slider
   m_TagString: Sensitivity_Slider
@@ -3544,6 +3564,24 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1421895819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1421895816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 525994fb571daac4ca732b20346d4a67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ThisSlider: {fileID: 1421895818}
+  SaveAs: Sensitivity
+  DefaultLoadedValue: 0.8
+  Slider_related_object: {fileID: 1708419036}
+  SendTo_SRO_ToUpdate: Change_sens
+  SendTo_SRO_argument: 0
+  SendArgument: 0
 --- !u!1 &1466720513 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: ba9b568199b00a24bb6a02b8276ddee1, type: 3}
@@ -3919,7 +3957,7 @@ RectTransform:
   m_LocalScale: {x: 0.63689345, y: 0.63689345, z: 0.63689345}
   m_Children: []
   m_Father: {fileID: 1044428058}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5332,6 +5370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2045475659}
   - component: {fileID: 2045475660}
+  - component: {fileID: 2045475661}
   m_Layer: 5
   m_Name: Music slider
   m_TagString: Music_Slider
@@ -5353,7 +5392,7 @@ RectTransform:
   - {fileID: 1721689988}
   - {fileID: 994992173}
   m_Father: {fileID: 1044428058}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5419,6 +5458,24 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &2045475661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2045475658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 525994fb571daac4ca732b20346d4a67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ThisSlider: {fileID: 2045475660}
+  SaveAs: Music_volume
+  DefaultLoadedValue: 1
+  Slider_related_object: {fileID: 1583617533}
+  SendTo_SRO_ToUpdate: Change_icon
+  SendTo_SRO_argument: 0
+  SendArgument: 0
 --- !u!1 &2054355953
 GameObject:
   m_ObjectHideFlags: 0
