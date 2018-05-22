@@ -20,3 +20,6 @@ To clarify, the problem is:
 Also the sliders do NOT change value until they load. So they *need* to be loaded with the scene, and then immediatly disabled. Otherwise the player will be annoyed by the need to just enter:
 menu (nothing loaded, but must be passed through> settings (loads sound settings) > controls (loads sensitivity)
 every time they load a scene to get their settings back, despite them CLEARLY being saved.
+==================================================================================================================
+Alright, so the privious fix worked. HOWEVER, the volume of objects with the "Load_Sound_valueAtStartOfGame"
+script fail to update until the slider's loaded again. In theory, the solution to this is to remove LSvASOG as a script and simply load the pause screen fully on frame, say, 2 and unload on frame 3. Or try (L/!L)ing on the same frame.

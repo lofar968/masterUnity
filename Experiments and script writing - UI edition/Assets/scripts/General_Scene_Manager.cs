@@ -8,9 +8,7 @@ public class General_Scene_Manager : MonoBehaviour {
     public Slider Sound_S;
     public Slider Music_S;
     public Slider Sense_S;
-    public GameObject Sound_O;
-    public GameObject Music_O;
-    public GameObject Sense_O;
+    public GameObject pauseHandeler;
     public bool Playing_game = false;
     public bool In_MM = false;
     public byte ship_num = 0;
@@ -28,21 +26,23 @@ public class General_Scene_Manager : MonoBehaviour {
     }
     void PlayGame()
     {
-        //Load scene =============================================================================================================================================================================
+        //Load scene ===============================================================================================================================================================================
         SceneManager.LoadScene("test");  //    ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||
-        //Find gameobjects =======================================================================================================================================================================
-        Sense_S = GameObject.FindWithTag("Sensitivity_Slider").GetComponent<Slider>();  //     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||
-        Sound_S = GameObject.FindWithTag("Sound_Slider").GetComponent<Slider>();       //      ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||
-        Music_S = GameObject.FindWithTag("Music_Slider").GetComponent<Slider>();      //       ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||
-        //Assign gameobject sliders saved values =================================================================================================================================================
-        Sense_S.value = Sensitivity;      //   ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||
-        Sound_S.value = Sound_vol;       //    ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||
-        Music_S.value = Music_vol;      //     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||
-        //Start observing sliders, such that when they change the saved value is updated =========================================================================================================
+        //Find gameobjects =========================================================================================================================================================================
+        Sense_S = GameObject.FindWithTag("Sensitivity_Slider").GetComponent<Slider>();  //      ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||
+        Sound_S = GameObject.FindWithTag("Sound_Slider").GetComponent<Slider>();       //       ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||
+        Music_S = GameObject.FindWithTag("Music_Slider").GetComponent<Slider>();      //        ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     || 
+        pauseHandeler = GameObject.FindWithTag("Pause_handeler");                    //         ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     || 
+        //Do initalizing things with said GOs ======================================================================================================================================================
+        Sense_S.value = Sensitivity;               // ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||
+        Sound_S.value = Sound_vol;                //  ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||
+        Music_S.value = Music_vol;               //   ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||
+        pauseHandeler.SendMessage("Continue");  //    ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     
+        //Start observing sliders, such that when they change the saved value is updated ===========================================================================================================
         Sense_S.onValueChanged.AddListener(delegate { Change_sens(); });     //   ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||
         Sound_S.onValueChanged.AddListener(delegate { Change_sound(); });   //    ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||
         Music_S.onValueChanged.AddListener(delegate { Change_music(); });  //     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||     ||
-        //Spawn ship "ship_num" ==================================================================================================================================================================
+        //Spawn ship "ship_num" ====================================================================================================================================================================
     }
     void Change_sens()
     {

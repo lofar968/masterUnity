@@ -10,6 +10,7 @@ TagManager:
   - Sensitivity_Slider
   - Sound_Slider
   - Music_Slider
+  - Pause_handeler
   layers:
   - Default
   - TransparentFX
