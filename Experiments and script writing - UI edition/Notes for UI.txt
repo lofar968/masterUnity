@@ -41,4 +41,14 @@ So, here is a list of all changes:
 
 - Disable everything under "Overlay canvas" except PSH and "Text." Disable all further additions as well.
 - Add completely black RIs covering all can. called "Settings overlay" and "Controls overlay."
-- Under "se
+- Under SO, add the following:
+- Slider "Sound Slider"
+> RT.pos -55.6 | 113.3 | 0, w/h 160/20, pivot 0.5 | 0.5, rot 0/0/0, scale 1/1/1.
+> On Value Changed (Single) add connection to Fighter set to send audioSource } dynamic float } volume
+> Script "Save_or_Load_Sliders_Value" (SoLSV) with PVs SaveAs --> Sound_volume, DefaultLoadedValue --> 1,
+Slider_related_object --> Sound icon (will be added later), SendTo_SRO_ToUpdate --> Change_icon, others default
+- RI "Sound icon"
+> RT.pos -171.3 | 114.3 | 0, scale 0.4727229/same/same, others default
+> Script z_Volume_icon_changer with PVs VolumeSlider --> Sound slider (Slider), Mute_texture-->Sound icon - Muted,
+others are obvious
+- Music slider
