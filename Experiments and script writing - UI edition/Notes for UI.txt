@@ -28,23 +28,17 @@ PROGRESS!! There is only one last thing I want to fix before I merge the files, 
 ------------------------------------------------------------------------------------------------------------------
 After I do that, all that remains is to add lables above the AI to make them easy to see, then I can just work on whatever I feel like working on. Almost there!
 ==================================================================================================================
-Done! Now it is time to start moving everything over. Logging progress here:
+Done! Now it is time to start moving everything over. 
 
--
+So, here is a list of all changes:
 
--
+- put every torus into one group called "SpaceRings"
+- Rename main canvas "Overlay canvas
 
--
+- Add a canvas, set to "World Space," called "World-space canvas," parented to the camera, where camera transform is postition 4.55998|0|8.870036 rotation 180|84.951|89.99999, with transform position 0|2.46|-23.73.
+- Add a RawImage child to said canvas, with Texture "Simple_crosshair" and script "Cursor_Movement_Script" with PVs Sens_slider --> "Sens slider (Slider)" | Multiply_DMP_by --> 0.275 | and others default.
+-The RI's RectTransform.position should be anchored to center, 0 | 16 | -6 and Width/Height 100
 
--
-
--
-
--
-
--
-
--
-
--
-
+- Disable everything under "Overlay canvas" except PSH and "Text." Disable all further additions as well.
+- Add completely black RIs covering all can. called "Settings overlay" and "Controls overlay."
+- Under "se

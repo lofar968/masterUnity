@@ -297,9 +297,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\scripts\_Load_Slider_Value_For_Volume.cs" />
     <Compile Include="Assets\scripts\_MakeObjectPermanent.cs" />
+    <Compile Include="Assets\scripts\_Save_or_Load_Sliders_Value.cs" />
     <Compile Include="Assets\scripts\AiControlScript.cs" />
     <Compile Include="Assets\scripts\CubeTexture.cs" />
+    <Compile Include="Assets\scripts\Cursor_Movement_Script.cs" />
     <Compile Include="Assets\scripts\General_Scene_Manager.cs" />
     <Compile Include="Assets\scripts\PauseMenuControl.cs" />
     <Compile Include="Assets\scripts\SendMessageToGM.cs" />
@@ -307,6 +310,8 @@
     <Compile Include="Assets\scripts\TellGM_GoTo_MainMenu.cs" />
     <Compile Include="Assets\scripts\TextUpdateScript.cs" />
     <Compile Include="Assets\scripts\ToggleCursor.cs" />
+    <Compile Include="Assets\scripts\z_Music_icon_changer.cs" />
+    <Compile Include="Assets\scripts\z_Volume_icon_changer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\VertexColorsDiffuse.shader" />
