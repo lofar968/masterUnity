@@ -32,7 +32,7 @@ public class Cursor_Movement_Script : MonoBehaviour {
     void Move_Crosshair(Vector3 addedTransform)
     {
         added_transform = -addedTransform;
-        transfrom = (-addedTransform / (DMP * multiply_DMP_by * ShipMaxTurnSpeed)) + OriginalPosition;
+        transfrom = (-addedTransform / (DMP * multiply_DMP_by / ShipMaxTurnSpeed)) + OriginalPosition;
         GetComponent<RectTransform>().anchoredPosition = transfrom; //problem is, UI uses "Rect Transform." Transform will never work.
     }
 }

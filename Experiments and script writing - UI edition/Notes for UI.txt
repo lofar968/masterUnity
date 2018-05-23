@@ -22,4 +22,29 @@ menu (nothing loaded, but must be passed through> settings (loads sound settings
 every time they load a scene to get their settings back, despite them CLEARLY being saved.
 ==================================================================================================================
 Alright, so the privious fix worked. HOWEVER, the volume of objects with the "Load_Sound_valueAtStartOfGame"
-script fail to update until the slider's loaded again. In theory, the solution to this is to remove LSvASOG as a script and simply load the pause screen fully on frame, say, 2 and unload on frame 3. Or try (L/!L)ing on the same frame.
+script fail to update until the slider's loaded again. In theory, the solution to this is to remove LSvASOG as a script and simply load the pause screen fully on frame, say, 2 and unload on frame 3. Or try (L/!L)ing on the same frame. Actually, yes, do that. Load --> Send message --> Unload.
+==================================================================================================================
+PROGRESS!! There is only one last thing I want to fix before I merge the files, and that is reconciling the cursor position on the screen with the sensitivity and turn speed variables, so no excessive work is required in the future.
+------------------------------------------------------------------------------------------------------------------
+After I do that, all that remains is to add lables above the AI to make them easy to see, then I can just work on whatever I feel like working on. Almost there!
+==================================================================================================================
+Done! Now it is time to start moving everything over. Logging progress here:
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+

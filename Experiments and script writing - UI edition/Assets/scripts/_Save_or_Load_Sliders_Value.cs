@@ -25,6 +25,10 @@ public class _Save_or_Load_Sliders_Value : MonoBehaviour {
                 Slider_related_object.SendMessage(SendTo_SRO_ToUpdate,SendTo_SRO_argument);
         }
     }
+    void awake()
+    {
+        ThisSlider.value = PlayerPrefs.GetFloat(SaveAs, DefaultLoadedValue);
+    }
 
     void SaveNewValue()
     {
