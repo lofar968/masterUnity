@@ -39,6 +39,10 @@ So, here is a list of all changes:
 - Add a RawImage child to said canvas, with Texture "Simple_crosshair" and script "Cursor_Movement_Script" with PVs Sens_slider --> "Sens slider (Slider)" | Multiply_DMP_by --> 0.275 | and others default.
 -The RI's RectTransform.position should be anchored to center, 0 | 16 | -6 and Width/Height 100
 
+- Add AudioSource to fighter
+- PVs on SCS Sens_slider --> Sens slider and Crosshair --> RawImage (from last part)
+- Add script LSVFV with PV Value To Load --> Sound_volume
+
 - Disable everything under "Overlay canvas" except PSH and "Text." Disable all further additions as well.
 - Add completely black RIs covering all can. called "Settings overlay" and "Controls overlay."
 - Under SO, add the following:
@@ -52,3 +56,20 @@ Slider_related_object --> Sound icon (will be added later), SendTo_SRO_ToUpdate 
 > Script z_Volume_icon_changer with PVs VolumeSlider --> Sound slider (Slider), Mute_texture-->Sound icon - Muted,
 others are obvious
 - Music slider
+> RT.pos -55.60004 | 55.2 | 0, w/h 160/20, pivot 0.5 | 0.5, rot 0/0/0, scale 0/0/0
+> On Value Changed (Single) add connection to Scene manager sending audioSource } dynamic float } volume
+> Script SoLSV with PVs SaveAs --> Music_volume DLV --> 1, SRO --> Music icon, ST_SRO_TU --> Change_icon
+- RI "Music icon"
+> RT.pos -176.7 | 53.1 | 0, w/h 100/100, pivot 0.5/0.5, rot 0/0/0, scale 0.6368935/0.6368935/0.6368935
+> Script "z_Music_icon_changer" with PVs Mute_texture --> "Music notes crossed out", Active texture obvious.
+- Button named "Back" with text "Back" at pos -66 | -120 | 0. w/h 160/30, pivot 0.5/0.5
+- Button named "Controls" with text Controls at pos -67 | -78 | 0, rest default, wth connection to Controls overlay } GameObject.SetActive.True
++Under Controls overlay, have:
+- Text
+> pos -1.30986 | 2.397423 | 0, scale 0.01024926/0.01024926/0.01024926
+> Text: "Sensitivity"
+- Slider "Sens slider"
+> pos -0.1219635 | 2.437393 | 0
+> Min val: 0.1
+> Max val: 10
+> Script SoLSV PVs "Sensitivity" 0.8 Fighter "Change_sens"
