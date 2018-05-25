@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 public class ShipControlScript : MonoBehaviour {
     //||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||
     public int facesX = 0;
@@ -26,13 +27,25 @@ public class ShipControlScript : MonoBehaviour {
     private float Turn_Direction = 0;
     private bool Was0 = true;
 
+    private Vector3 Mouse_Vector3_Distance = new Vector3();
+
+    public Slider Sens_slider;
+
+    public GameObject crosshair;
+
     public delegate void SpeedUpdate(float Speed2);
     public static event SpeedUpdate OnSpeedUpdate;
 
     //||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||-----------||
-    void Start() {
+    void Start()
+    {
         rb = GetComponent<Rigidbody>();
+        Sens_slider.onValueChanged.AddListener(delegate { Change_sens(); }); // NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW 
     }
+    void Change_sens()
+    {
+        Delta_Mouse_Position = Sens_slider.value;
+    } // NO LONGER NEW | NO LONGER NEW | NO LONGER NEW | NO LONGER NEW | NO LONGER NEW | NO LONGER NEW | NO LONGER NEW | NO LONGER NEW | NO LONGER NEW | NO LONGER NEW | NO LONGER NEW | NO LONGER NEW
     void GetMouseInput()
     {
         Mouse_X_Distance += Input.GetAxis("Mouse X");
@@ -234,6 +247,10 @@ public class ShipControlScript : MonoBehaviour {
         SetShipSpin();
 
         SendSpeed();
+
+        Mouse_Vector3_Distance.x = Mouse_X_Distance;
+        Mouse_Vector3_Distance.y = Mouse_Y_Distance;
+        crosshair.SendMessage("Move_Crosshair",Mouse_Vector3_Distance);
         //mouse input = Input.GetAxis("Mouse X"). This is it! (int X = Input.GetAxis("Mouse X"); if X > 0 {/*turn*/; X -= /*some other number*/;} and same for Y!
     }
 }
