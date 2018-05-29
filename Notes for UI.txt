@@ -1,0 +1,78 @@
+https://docs.unity3d.com/ScriptReference/PlayerPrefs.SetString.html
+https://docs.unity3d.com/ScriptReference/PlayerPrefs.SetFloat.html
+https://docs.unity3d.com/ScriptReference/PlayerPrefs.SetInt.html
+https://docs.unity3d.com/ScriptReference/PlayerPrefs.Save.html
+https://docs.unity3d.com/ScriptReference/PlayerPrefs.html
+https://docs.unity3d.com/Manual/MultiSceneEditing.html
+https://forum.unity.com/threads/editor-script-how-to-access-objects-under-dontdestroyonload-while-in-play-mode.442014/
+https://answers.unity.com/questions/1072572/accessing-variables-on-a-script-on-a-dontdestroyon.html
+==================================================================================================================
+Go to scene Main_menu and set up the "cube" to be disabled on load, THEN send a message to it, THEN test if the message was recieved:
+Testing done. Result was as expected - messages can NOT be sent to unloaded (i.e. inactive) gameobjects. Perhaps the reason the sound icon will NOT instantly update, but the music icon does, is that the loading order is something like:
+[music icon] --> [music slider] || and in there || [sound slider] --> [sound icon].
+To clarify, the problem is:
+--------------------------------------------==--------------------------------------------------------------------
+1) MI loads				    || 1) SS loads
+2) MS loads				    || 2) SS sends message to SI
+3) MS sends message to MI		    || 3) SI is not loaded, so it fails to recieve the message
+4) MI is loaded, so it recieves the message || 4) SI loads, and SS will never re-send the message
+--------------------------------------------==--------------------------------------------------------------------
+Also the sliders do NOT change value until they load. So they *need* to be loaded with the scene, and then immediatly disabled. Otherwise the player will be annoyed by the need to just enter:
+menu (nothing loaded, but must be passed through> settings (loads sound settings) > controls (loads sensitivity)
+every time they load a scene to get their settings back, despite them CLEARLY being saved.
+==================================================================================================================
+Alright, so the privious fix worked. HOWEVER, the volume of objects with the "Load_Sound_valueAtStartOfGame"
+script fail to update until the slider's loaded again. In theory, the solution to this is to remove LSvASOG as a script and simply load the pause screen fully on frame, say, 2 and unload on frame 3. Or try (L/!L)ing on the same frame. Actually, yes, do that. Load --> Send message --> Unload.
+==================================================================================================================
+PROGRESS!! There is only one last thing I want to fix before I merge the files, and that is reconciling the cursor position on the screen with the sensitivity and turn speed variables, so no excessive work is required in the future.
+------------------------------------------------------------------------------------------------------------------
+After I do that, all that remains is to add lables above the AI to make them easy to see, then I can just work on whatever I feel like working on. Almost there!
+==================================================================================================================
+Done! Now it is time to start moving everything over. 
+
+So, here is a list of all changes:
+
+- put every torus into one group called "SpaceRings" ?
+- Rename main canvas "Overlay canvas" ?
+
+- Add a canvas, set to "World Space," called "World-space canvas," parented to the camera, where camera transform is postition 4.55998|0|8.870036 rotation 180|84.951|89.99999, with transform position 0|2.46|-23.73. rot -15.655
+//////////////////// ERROR: SOMETHING WENT WRONG. CHECK EVERYTHING AND COPY EVERYTHING IN R.T ////////////////////
+\\\\\\\\\\\\\\\\\\\\\\\\\ IT MAY HAVE SOMETHING TO DO WITH THE SCRIPTS NOT BEING CORRECT \\\\\\\\\\\\\\\\\\\\\\\\\
+- Add a RawImage child to said canvas, with Texture "Simple_crosshair" and script "Cursor_Movement_Script" with PVs Sens_slider --> "Sens slider (Slider)" | Multiply_DMP_by --> 0.275 | and others default. ? 
+-The RI's RectTransform.position should be anchored to center, 0 | 16 | -6 and Width/Height 100, scale 0.25
+
+- Add AudioSource to fighter ?
+- Add script LSVFV with PV Value To Load --> Sound_volume ?
+
+- Disable everything under "Overlay canvas" except PSH and "Text." Disable all further additions as well. ?
+- Add completely black RIs covering all can. called "Settings overlay" and "Controls overlay." ?
+- Under SO, add the following:
+- Slider "Sound Slider"
+> RT.pos -55.6 | 113.3 | 0, w/h 160/20, pivot 0.5 | 0.5, rot 0/0/0, scale 1/1/1. ?
+> On Value Changed (Single) add connection to Fighter set to send audioSource } dynamic float } volume ?
+> Script "Save_or_Load_Sliders_Value" (SoLSV) with PVs SaveAs --> Sound_volume, DefaultLoadedValue --> 1,
+Slider_related_object --> Sound icon (will be added later), SendTo_SRO_ToUpdate --> Change_icon, others default
+- RI "Sound icon" //////////////////////////////////////////////////////////////////////////////////
+> RT.pos -171.3 | 114.3 | 0, scale 0.4727229/same/same, others default 
+> Script z_Volume_icon_changer with PVs VolumeSlider --> Sound slider (Slider), Mute_texture-->Sound icon - Muted,
+others are obvious
+- Music slider //////////////////////////////////////////////////////////////////////////////////////////
+> RT.pos -55.60004 | 55.2 | 0, w/h 160/20, pivot 0.5 | 0.5, rot 0/0/0, scale 0/0/0
+> On Value Changed (Single) add connection to Scene manager sending audioSource } dynamic float } volume
+> Script SoLSV with PVs SaveAs --> Music_volume DLV --> 1, SRO --> Music icon, ST_SRO_TU --> Change_icon
+- RI "Music icon" ///////////////////////////////////////////////////////////////////////////////////////////
+> RT.pos -176.7 | 53.1 | 0, w/h 100/100, pivot 0.5/0.5, rot 0/0/0, scale 0.6368935/0.6368935/0.6368935
+> Script "z_Music_icon_changer" with PVs Mute_texture --> "Music notes crossed out", Active texture obvious.
+- Button named "Back" with text "Back" at pos -66 | -120 | 0. w/h 160/30, pivot 0.5/0.5 /////////////////////
+- Button named "Controls" with text Controls at pos -67 | -78 | 0, rest default, wth connection to Controls overlay } GameObject.SetActive.True
++Under Controls overlay, have: /////////////////////////////////////////////////////////////////////////////////
+- Text
+> pos -1.30986 | 2.397423 | 0, scale 0.01024926/0.01024926/0.01024926
+> Text: "Sensitivity"
+- Slider "Sens slider"
+> pos -0.1219635 | 2.437393 | 0
+> Min val: 0.1
+> Max val: 10
+> Script SoLSV PVs "Sensitivity" 0.8 Fighter "Change_sens"
+
+- PVs on Ship Control Script Sens_slider --> Sens slider and Crosshair --> RawImage (from last part)

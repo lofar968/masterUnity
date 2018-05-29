@@ -14,6 +14,7 @@ public class TextUpdateScript : MonoBehaviour
     // Use this for initialization
     public GameObject PlayerEntity;
     Text AssignedText;
+
     void Start()
     {
         ShipControlScript.OnSpeedUpdate += HandleSpeedUpdate; ;

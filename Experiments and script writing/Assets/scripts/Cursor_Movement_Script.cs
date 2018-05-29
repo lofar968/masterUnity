@@ -33,6 +33,6 @@ public class Cursor_Movement_Script : MonoBehaviour {
     {
         added_transform = -addedTransform;
         transfrom = (-addedTransform / (DMP * multiply_DMP_by / ShipMaxTurnSpeed)) + OriginalPosition;
-        GetComponent<RectTransform>().anchoredPosition = transfrom; //problem is, UI uses "Rect Transform." Transform will never work.
+        GetComponent<RectTransform>().anchoredPosition = transfrom; //move this call for GC<RT>(); into a private variable Start() call.
     }
 }
