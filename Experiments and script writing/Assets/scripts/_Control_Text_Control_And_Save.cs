@@ -3,208 +3,225 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class _Control_Text_Control_And_Save : MonoBehaviour {
+public class _Control_Text_Control_And_Save : MonoBehaviour
+{
 
-    private string assignedChar;
-    private Text T;
-    private bool key_is_being_selected;
-    private bool runFinalCode;
+    public string assignedString = "hello";
+    public GameObject TextObj;
+    public Text T;
+    private bool key_is_being_selected = false;
     public string SaveStringAs;
-    
-    void Start () {
-        T = GetComponent<Text>();
+    private bool WaitingForKeyToStartBeingSelected = false;
+
+    void Start()
+    {
+        T = TextObj.GetComponent<Text>();
+        assignedString = PlayerPrefs.GetString(SaveStringAs);
+        T.text = assignedString;
     }
 
-	void change_key() {
-        T.text = "press a key";
-        key_is_being_selected = true;
-        runFinalCode = true;
-        while (key_is_being_selected)
+    void change_key()
+    {
+        WaitingForKeyToStartBeingSelected = true;
+    }
+
+    void Update()
+    {
+            
+        assignedString = " ";
+        if (WaitingForKeyToStartBeingSelected && !(Input.GetKey(KeyCode.Mouse0)))
         {
+            T.text = "press a key";
+            key_is_being_selected = true;
+            WaitingForKeyToStartBeingSelected = false;
+        }
+        if (key_is_being_selected)
+        {
+            Debug.Log("Loop  is running");
             if (Input.GetKey(KeyCode.Q))
-                assignedChar = 'Q';
+                assignedString = "Q";
             else if (Input.GetKey(KeyCode.W))
-                assignedChar = 'W';
+                assignedString = "W";
             else if (Input.GetKey(KeyCode.E))
-                assignedChar = 'E';
+                assignedString = "E";
             else if (Input.GetKey(KeyCode.R))
-                assignedChar = 'R';
+                assignedString = "R";
             else if (Input.GetKey(KeyCode.T))
-                assignedChar = 'T';
+                assignedString = "T";
             else if (Input.GetKey(KeyCode.Y))
-                assignedChar = 'Y';
+                assignedString = "Y";
             else if (Input.GetKey(KeyCode.U))
-                assignedChar = 'U';
+                assignedString = "U";
             else if (Input.GetKey(KeyCode.I))
-                assignedChar = 'I';
+                assignedString = "I";
             else if (Input.GetKey(KeyCode.O))
-                assignedChar = 'O';
+                assignedString = "O";
             else if (Input.GetKey(KeyCode.P))
-                assignedChar = 'P';
+                assignedString = "P";
             else if (Input.GetKey(KeyCode.A))
-                assignedChar = 'A';
+                assignedString = "A";
             else if (Input.GetKey(KeyCode.S))
-                assignedChar = 'S';
+                assignedString = "S";
             else if (Input.GetKey(KeyCode.D))
-                assignedChar = 'D';
+                assignedString = "D";
             else if (Input.GetKey(KeyCode.F))
-                assignedChar = 'F';
+                assignedString = "F";
             else if (Input.GetKey(KeyCode.G))
-                assignedChar = 'G';
+                assignedString = "G";
             else if (Input.GetKey(KeyCode.H))
-                assignedChar = 'H';
+                assignedString = "H";
             else if (Input.GetKey(KeyCode.J))
-                assignedChar = 'J';
+                assignedString = "J";
             else if (Input.GetKey(KeyCode.K))
-                assignedChar = 'K';
+                assignedString = "K";
             else if (Input.GetKey(KeyCode.L))
-                assignedChar = 'L';
+                assignedString = "L";
             else if (Input.GetKey(KeyCode.Z))
-                assignedChar = 'Z';
+                assignedString = "Z";
             else if (Input.GetKey(KeyCode.X))
-                assignedChar = 'X';
+                assignedString = "X";
             else if (Input.GetKey(KeyCode.C))
-                assignedChar = 'C';
+                assignedString = "C";
             else if (Input.GetKey(KeyCode.V))
-                assignedChar = 'V';
+                assignedString = "V";
             else if (Input.GetKey(KeyCode.B))
-                assignedChar = 'B';
+                assignedString = "B";
             else if (Input.GetKey(KeyCode.N))
-                assignedChar = 'N';
+                assignedString = "N";
             else if (Input.GetKey(KeyCode.M))
-                assignedChar = 'M';
+                assignedString = "M";
             else if (Input.GetKey(KeyCode.Backspace))
-                assignedChar = 'b'; /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////v
+                assignedString = "Backspace";
             else if (Input.GetKey(KeyCode.Delete))
-                assignedChar = 'd';
+                assignedString = "Delete";
             else if (Input.GetKey(KeyCode.Tab))
-                assignedChar = 't';
+                assignedString = "Tab";
             else if (Input.GetKey(KeyCode.Return))
-                assignedChar = 'r';
+                assignedString = "Return";
             else if (Input.GetKey(KeyCode.Space))
-                assignedChar = 's';
+                assignedString = "Space";
             else if (Input.GetKey(KeyCode.W))
-                assignedChar = 'W';
+                assignedString = "W";
             else if (Input.GetKey(KeyCode.Keypad0))
-                assignedChar = ')';
+                assignedString = "Numpad0";
             else if (Input.GetKey(KeyCode.Keypad1))
-                assignedChar = '!';
+                assignedString = "Numpad1";
             else if (Input.GetKey(KeyCode.Keypad2))
-                assignedChar = '@';
+                assignedString = "Numpad2";
             else if (Input.GetKey(KeyCode.Keypad3))
-                assignedChar = '#';
+                assignedString = "Numpad3";
             else if (Input.GetKey(KeyCode.Keypad4))
-                assignedChar = '$';
+                assignedString = "Numpad4";
             else if (Input.GetKey(KeyCode.Keypad5))
-                assignedChar = '%';
+                assignedString = "Numpad5";
             else if (Input.GetKey(KeyCode.Keypad6))
-                assignedChar = '^';
+                assignedString = "Numpad6";
             else if (Input.GetKey(KeyCode.Keypad7))
-                assignedChar = '&';
+                assignedString = "Numpad7";
             else if (Input.GetKey(KeyCode.Keypad8))
-                assignedChar = '*';
+                assignedString = "Numpad8";
             else if (Input.GetKey(KeyCode.Keypad9))
-                assignedChar = '(';
+                assignedString = "Numpad9";
             else if (Input.GetKey(KeyCode.KeypadPeriod))
-                assignedChar = '>';
+                assignedString = "Numpad.";
             else if (Input.GetKey(KeyCode.KeypadDivide))
-                assignedChar = '?';
+                assignedString = "Numpad/";
             else if (Input.GetKey(KeyCode.KeypadMultiply))
-                assignedChar = '"';
+                assignedString = "Numpad*";
             else if (Input.GetKey(KeyCode.KeypadMinus))
-                assignedChar = '_'; ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////^
+                assignedString = "Numpad-";
             else if (Input.GetKey(KeyCode.KeypadPlus))
-                assignedChar = '+';
+                assignedString = "Numpad+";
             else if (Input.GetKey(KeyCode.KeypadEnter))
-                assignedChar = 'e'; ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////v
+                assignedString = "Numpad Enter";
             else if (Input.GetKey(KeyCode.KeypadEquals))
-                assignedChar = 'q';
+                assignedString = "Numpad=";
             else if (Input.GetKey(KeyCode.UpArrow))
-                assignedChar = '↑';
+                assignedString = "↑";
             else if (Input.GetKey(KeyCode.LeftArrow))
-                assignedChar = '←';
+                assignedString = "←";
             else if (Input.GetKey(KeyCode.DownArrow))
-                assignedChar = '↓';
+                assignedString = "↓";
             else if (Input.GetKey(KeyCode.RightArrow))
-                assignedChar = '→'; ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////^
+                assignedString = "→";
             else if (Input.GetKey(KeyCode.Alpha0))
-                assignedChar = '0';
+                assignedString = "0";
             else if (Input.GetKey(KeyCode.Alpha1))
-                assignedChar = '1';
+                assignedString = "1";
             else if (Input.GetKey(KeyCode.Alpha2))
-                assignedChar = '2';
+                assignedString = "2";
             else if (Input.GetKey(KeyCode.Alpha3))
-                assignedChar = '3';
+                assignedString = "3";
             else if (Input.GetKey(KeyCode.Alpha4))
-                assignedChar = '4';
+                assignedString = "4";
             else if (Input.GetKey(KeyCode.Alpha5))
-                assignedChar = '5';
+                assignedString = "5";
             else if (Input.GetKey(KeyCode.Alpha6))
-                assignedChar = '6';
+                assignedString = "6";
             else if (Input.GetKey(KeyCode.Alpha7))
-                assignedChar = '7';
+                assignedString = "7";
             else if (Input.GetKey(KeyCode.Alpha8))
-                assignedChar = '8';
+                assignedString = "8";
             else if (Input.GetKey(KeyCode.Alpha9))
-                assignedChar = '9';
+                assignedString = "9";
             else if (Input.GetKey(KeyCode.Quote))
-                assignedChar = 'i'; /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////|
+                assignedString = "'";
             else if (Input.GetKey(KeyCode.Comma))
-                assignedChar = ',';
+                assignedString = ",";
             else if (Input.GetKey(KeyCode.Minus))
-                assignedChar = '-';
+                assignedString = "-";
             else if (Input.GetKey(KeyCode.Period))
-                assignedChar = '.';
+                assignedString = ".";
             else if (Input.GetKey(KeyCode.Slash))
-                assignedChar = '/';
+                assignedString = "/";
             else if (Input.GetKey(KeyCode.Semicolon))
-                assignedChar = ';';
+                assignedString = ";";
             else if (Input.GetKey(KeyCode.Equals))
-                assignedChar = '=';
+                assignedString = "=";
             else if (Input.GetKey(KeyCode.LeftBracket))
-                assignedChar = '[';
+                assignedString = "[";
             else if (Input.GetKey(KeyCode.RightBracket))
-                assignedChar = ']';
+                assignedString = "]";
             else if (Input.GetKey(KeyCode.Backslash))
-                assignedChar = '|'; ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////v
+                assignedString = "Backslash";
             else if (Input.GetKey(KeyCode.Numlock))
-                assignedChar = 'n';
+                assignedString = "Numlock";
             else if (Input.GetKey(KeyCode.CapsLock))
-                assignedChar = 'c';
+                assignedString = "CapsLock";
             else if (Input.GetKey(KeyCode.RightShift))
-                assignedChar = 'a';
+                assignedString = "R Shift";
             else if (Input.GetKey(KeyCode.LeftShift))
-                assignedChar = 'd';
+                assignedString = "L Shift";
             else if (Input.GetKey(KeyCode.RightControl))
-                assignedChar = ':';
+                assignedString = "R ctrl";
             else if (Input.GetKey(KeyCode.LeftControl))
-                assignedChar = 'k';
+                assignedString = "L ctrl";
             else if (Input.GetKey(KeyCode.RightAlt))
-                assignedChar = ' ';
+                assignedString = "R alt";
             else if (Input.GetKey(KeyCode.LeftAlt))
-                assignedChar = 'x';
+                assignedString = "L alt";
             else if (Input.GetKey(KeyCode.Mouse0))
-                assignedChar = 'आ';
+                assignedString = "M1";
             else if (Input.GetKey(KeyCode.Mouse1))
-                assignedChar = 'इ';
+                assignedString = "M2";
             else if (Input.GetKey(KeyCode.Mouse2))
-                assignedChar = 'क';
+                assignedString = "M3";
             else if (Input.GetKey(KeyCode.Mouse3))
-                assignedChar = 'ण';
+                assignedString = "M4";
             else if (Input.GetKey(KeyCode.Mouse4))
-                assignedChar = 'झ';
+                assignedString = "M5";
             else if (Input.GetKey(KeyCode.Mouse5))
-                assignedChar = 'ट';
+                assignedString = "M6";
             else if (Input.GetKey(KeyCode.Mouse6))
-                assignedChar = 'ब'; ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////^
-
-            if(runFinalCode)
+                assignedString = "M7";
+            if (assignedString != " ")
             {
-                T.text = assignedChar;
-
+                key_is_being_selected = false;
+                T.text = assignedString;
+                PlayerPrefs.SetString(SaveStringAs, assignedString);
             }
+        }
 
             //copy, paste, change, copy, paste, change, copy, paste, change, copy, paste, change, copy, paste, change, copy, paste, change, copy, paste, change, copy, paste, change,
-        }
     }
 }
