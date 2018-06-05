@@ -7,6 +7,11 @@ TagManager:
   - PlayerEntity
   - Ai
   - GM
+  - Pause_handeler
+  - Sound_Slider
+  - Sensitivity_Slider
+  - Music_Slider
+  - Bullet
   layers:
   - Default
   - TransparentFX
