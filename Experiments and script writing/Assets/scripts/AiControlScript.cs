@@ -16,6 +16,7 @@ public class AiControlScript : MonoBehaviour {
     public int aiCount;
     public float rotSpeed = 5;
 
+    public GameObject child;
     //Distances
     public float fireDist;
 
@@ -27,6 +28,7 @@ public class AiControlScript : MonoBehaviour {
     float targetSpeed;
 
     Rigidbody rigidBody;
+    Transform childTransform;
 
     public List<Vector3> EscapeDirections = new List<Vector3>();
 
@@ -39,7 +41,7 @@ public class AiControlScript : MonoBehaviour {
         targetSpeed = storeMaxSpeed;
 
         rigidBody = GetComponent<Rigidbody>();
-
+        childTransform = child.GetComponent<Transform>()   ;
         Debug.Log("Ai Initialized");
     }
 
@@ -121,6 +123,8 @@ public class AiControlScript : MonoBehaviour {
         }
 
         rigidBody.velocity = velocity;
+        childTransform = myTransform;
+
 
         RotateTowardsPlayer();
 

@@ -2630,6 +2630,7 @@ MonoBehaviour:
   target: {fileID: 287515591}
   aiCount: 0
   rotSpeed: 5
+  child: {fileID: 1394837033}
   fireDist: 0
   maxSpeed: 5
   EscapeDirections: []
