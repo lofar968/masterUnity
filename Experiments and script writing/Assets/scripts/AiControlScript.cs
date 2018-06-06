@@ -14,7 +14,7 @@ public class AiControlScript : MonoBehaviour {
 
     private Transform myTransform;
     public int aiCount;
-    int rotSpeed = 5;
+    public float rotSpeed = 5;
 
     //Distances
     public float fireDist;
@@ -27,7 +27,6 @@ public class AiControlScript : MonoBehaviour {
     float targetSpeed;
 
     Rigidbody rigidBody;
-    Rigidbody childRB;
 
     public List<Vector3> EscapeDirections = new List<Vector3>();
 
@@ -35,11 +34,11 @@ public class AiControlScript : MonoBehaviour {
 
     void Start () {
 
+        myTransform = GetComponent<Transform>();
         storeMaxSpeed = maxSpeed;
         targetSpeed = storeMaxSpeed;
 
         rigidBody = GetComponent<Rigidbody>();
-        childRB = GetComponentInChildren<Rigidbody>();
 
         Debug.Log("Ai Initialized");
     }
@@ -68,7 +67,7 @@ public class AiControlScript : MonoBehaviour {
     void RotateTowardsPlayer()
     {
         Vector3 playerDir = target.transform.position - transform.position;
-        Vector3 newDir = Vector3.RotateTowards(transform.up, playerDir, rotSpeed, 0.0f);
+        Vector3 newDir = Vector3.RotateTowards(myTransform.right * -1, playerDir, rotSpeed, 0.0f);
         transform.rotation = Quaternion.LookRotation(newDir);
     }
 
@@ -108,7 +107,6 @@ public class AiControlScript : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        myTransform = this.transform;
 
         Debug.DrawLine(transform.position, target.position);
 
@@ -123,7 +121,6 @@ public class AiControlScript : MonoBehaviour {
         }
 
         rigidBody.velocity = velocity;
-        childRB.velocity = velocity;
 
         RotateTowardsPlayer();
 
