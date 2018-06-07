@@ -66,6 +66,18 @@ public class AiControlScript : MonoBehaviour {
     }
 
 
+    void BasicBehaviour()
+    {
+        BlockA();
+        RotateTowardsPlayer();
+    }
+
+    void ShootPlayer()
+    {
+        _BulletFiringScript = new BulletFiringScript();
+
+    }
+
     void RotateTowardsPlayer()
     {
         Vector3 playerDir = target.transform.position - transform.position;
@@ -98,7 +110,7 @@ public class AiControlScript : MonoBehaviour {
         childTransform.position = myTransform.position;
 
 
-        RotateTowardsPlayer();
+        
 
     }
 }
