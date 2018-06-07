@@ -16,6 +16,30 @@ public class AiControlScript : MonoBehaviour {
     public int aiCount;
     public float rotSpeed = 5;
 
+    //used while moving to a point
+    public float movingRotSpeed;
+    public float movingMaxSpeed;
+    public float movingAccelleration;
+    //used while aiming & firing
+    public float stillRotSpeed;
+    public float stillMaxSpeed;
+    public float stillAccelleration;
+    //Range and leeway on position's distance from player or target
+    public float AI_IdealRange;
+    public float AI_RangeLeeway;
+    public float AI_IdealPositionLeeway;
+    //"state" variables
+    private bool isMoving = false;
+    private bool isInBlockA = true;
+    //Sigma vars
+    private float DeltaDistance_SigmaAi;
+    public float SigmaDistanceRange; //from idealRange
+    private GameObject S_Obj;
+    private Transform S_Transform;
+    private float SigmaDistanceFromPlayer;
+    public GameObject EmptyTransform;
+    public Vector3 SigmaPosRelativeToPlayer;
+
     public GameObject child;
     //Distances
     public float fireDist;
@@ -41,7 +65,7 @@ public class AiControlScript : MonoBehaviour {
         targetSpeed = storeMaxSpeed;
 
         rigidBody = GetComponent<Rigidbody>();
-        childTransform = child.GetComponent<Transform>()   ;
+        childTransform = child.GetComponent<Transform>();
         Debug.Log("Ai Initialized");
     }
 
@@ -62,10 +86,17 @@ public class AiControlScript : MonoBehaviour {
 
     void BlockA()
     {
-        //flow chart referrence
+        if(S_Obj == null)
+        {
+            S_Obj = Instantiate(EmptyTransform, target.position, Random.rotation);
+            S_Transform = S_Obj.GetComponent<Transform>();
+            SigmaDistanceFromPlayer = AI_IdealRange + ((Random.value - 0.5f) * SigmaDistanceRange * 2);
+            S_Transform.Translate(SigmaDistanceFromPlayer * S_Transform.forward, Space.World);
+        }
     }
 
 
+<<<<<<< HEAD
     void BasicBehaviour()
     {
         BlockA();
@@ -79,9 +110,12 @@ public class AiControlScript : MonoBehaviour {
     }
 
     void RotateTowardsPlayer()
+=======
+    void s_RotateTowardsPlayer()
+>>>>>>> 881aff4a94b6ed06c05e1d5c670c6788d50745e6
     {
         Vector3 playerDir = target.transform.position - transform.position;
-        Vector3 newDir = Vector3.RotateTowards(myTransform.right * -1, playerDir, rotSpeed, 0.0f);
+        Vector3 newDir = Vector3.RotateTowards(myTransform.right * -1, playerDir, stillRotSpeed, 0.0f);
         transform.rotation = Quaternion.LookRotation(newDir);
     }
 
@@ -102,15 +136,25 @@ public class AiControlScript : MonoBehaviour {
     private void FixedUpdate()
     {
 
-        Debug.DrawLine(transform.position, target.position);
+        if (isInBlockA)
+            BlockA();
+        else
+        {
 
+
+            Debug.DrawLine(transform.position, target.position);
+
+
+
+<<<<<<< HEAD
         
+=======
+            rigidBody.velocity = velocity;
+            childTransform.position = myTransform.position;
+>>>>>>> 881aff4a94b6ed06c05e1d5c670c6788d50745e6
 
-        rigidBody.velocity = velocity;
-        childTransform.position = myTransform.position;
 
-
-        
-
+            s_RotateTowardsPlayer();
+        }
     }
 }
