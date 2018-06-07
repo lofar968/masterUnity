@@ -92,15 +92,7 @@ public class AiControlScript : MonoBehaviour {
 
         Debug.DrawLine(transform.position, target.position);
 
-        Vector3 forces = MoveTowardsTarget(target.position);
-
-        acceleration = forces;
-        velocity += 2 * acceleration * Time.deltaTime;
-
-        if (velocity.magnitude > maxSpeed)
-        {
-            velocity = velocity.normalized * maxSpeed;
-        }
+        
 
         rigidBody.velocity = velocity;
         childTransform.position = myTransform.position;
