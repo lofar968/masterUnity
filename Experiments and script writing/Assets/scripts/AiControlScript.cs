@@ -73,26 +73,6 @@ public class AiControlScript : MonoBehaviour {
         transform.rotation = Quaternion.LookRotation(newDir);
     }
 
-    /*void ChasePlayer()
-    {
-        var targetDist = (target.transform.position - myTransform.position).magnitude;
-
-        if (targetDist <= minChaseDist)
-        {
-            myTransform.position += myTransform.forward * acceleration * Time.deltaTime;
-
-            if (moveSpeed > maxSpeed)
-            {
-                moveSpeed = maxSpeed;
-            }
-
-            if (moveSpeed < -maxSpeed)
-            {
-                moveSpeed = -maxSpeed;
-            }
-        }
-    }*/
-
     Vector3 MoveTowardsTarget(Vector3 target)
     {
         Vector3 distance = target - transform.position;
@@ -123,7 +103,7 @@ public class AiControlScript : MonoBehaviour {
         }
 
         rigidBody.velocity = velocity;
-        childTransform = myTransform;
+        childTransform.position = myTransform.position;
 
 
         RotateTowardsPlayer();

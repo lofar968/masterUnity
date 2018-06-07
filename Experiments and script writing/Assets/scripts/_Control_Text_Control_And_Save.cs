@@ -218,6 +218,7 @@ public class _Control_Text_Control_And_Save : MonoBehaviour
             {
                 key_is_being_selected = false;
                 T.text = assignedString;
+                //Save Controls
                 PlayerPrefs.SetString(SaveStringAs, assignedString);
             }
         }
