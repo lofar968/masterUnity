@@ -110,7 +110,27 @@ public class AiControlScript : MonoBehaviour {
     }
 
 
+<<<<<<< HEAD
     bool s_RotateTowardsV3(Vector3 Target)
+=======
+<<<<<<< HEAD
+    void BasicBehaviour()
+    {
+        BlockA();
+        RotateTowardsPlayer();
+    }
+
+    void ShootPlayer()
+    {
+        _BulletFiringScript = new BulletFiringScript();
+
+    }
+
+    void RotateTowardsPlayer()
+=======
+    void s_RotateTowardsPlayer()
+>>>>>>> 881aff4a94b6ed06c05e1d5c670c6788d50745e6
+>>>>>>> 6598f3b77b1a8ebee7622bc90d06adc48c38e946
     {
         Vector3 playerDir = Target - transform.position;
         Vector3 newDir = Vector3.RotateTowards(myTransform.right * -1, playerDir, stillRotSpeed * Time.deltaTime, 0.0f);
@@ -146,8 +166,12 @@ public class AiControlScript : MonoBehaviour {
 
 
 
+<<<<<<< HEAD
+        
+=======
             rigidBody.velocity = velocity;
             childTransform.position = myTransform.position;
+>>>>>>> 881aff4a94b6ed06c05e1d5c670c6788d50745e6
 
 
             s_RotateTowardsV3(target.position);
