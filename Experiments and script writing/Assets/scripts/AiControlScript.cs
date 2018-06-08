@@ -14,7 +14,8 @@ public class AiControlScript : MonoBehaviour {
 
     private Transform myTransform;
     public int aiCount;
-    public float rotSpeed = 5;
+
+    public float CurrentSpeed;
 
     //used while moving to a point
     public float movingRotSpeed;
@@ -92,29 +93,44 @@ public class AiControlScript : MonoBehaviour {
             S_Transform = S_Obj.GetComponent<Transform>();
             SigmaDistanceFromPlayer = AI_IdealRange + ((Random.value - 0.5f) * SigmaDistanceRange * 2);
             S_Transform.Translate(SigmaDistanceFromPlayer * S_Transform.forward, Space.World);
+            SigmaPosRelativeToPlayer = S_Transform.position - target.position;
         }
-    }
-
-
-    void s_RotateTowardsPlayer()
-    {
-        Vector3 playerDir = target.transform.position - transform.position;
-        Vector3 newDir = Vector3.RotateTowards(myTransform.right * -1, playerDir, stillRotSpeed, 0.0f);
-        transform.rotation = Quaternion.LookRotation(newDir);
-    }
-
-    Vector3 MoveTowardsTarget(Vector3 target)
-    {
-        Vector3 distance = target - transform.position;
-
-        if(distance.magnitude < 25)
+        if(!isMoving)
         {
-            return distance.normalized * -maxSpeed;
+            if (s_RotateTowardsV3(SigmaPosRelativeToPlayer + target.position))
+                isMoving = true;
         }
         else
         {
-            return distance.normalized * maxSpeed;
+            m_MoveForwards();
+            m_RotateTowardsV3(SigmaPosRelativeToPlayer + target.position);
         }
+
+        Debug.DrawLine(target.position, target.position + SigmaPosRelativeToPlayer, Color.red);
+    }
+
+
+    bool s_RotateTowardsV3(Vector3 Target)
+    {
+        Vector3 playerDir = Target - transform.position;
+        Vector3 newDir = Vector3.RotateTowards(myTransform.right * -1, playerDir, stillRotSpeed * Time.deltaTime, 0.0f);
+        transform.rotation = Quaternion.LookRotation(newDir);
+        if (Vector3.Angle(myTransform.forward, SigmaPosRelativeToPlayer + target.position - myTransform.position) == 0)
+            return true;
+        else
+            return false;
+    }
+    void m_RotateTowardsV3(Vector3 Target)
+    {
+        Vector3 playerDir = Target - transform.position;
+        Vector3 newDir = Vector3.RotateTowards(myTransform.right * -1, playerDir, movingRotSpeed, 0.0f);
+        transform.rotation = Quaternion.LookRotation(newDir);
+    }
+
+    void m_MoveForwards()
+    {
+        rigidBody.velocity = CurrentSpeed * myTransform.forward;
+        CurrentSpeed += movingAccelleration;
     }
 
     private void FixedUpdate()
@@ -134,7 +150,8 @@ public class AiControlScript : MonoBehaviour {
             childTransform.position = myTransform.position;
 
 
-            s_RotateTowardsPlayer();
+            s_RotateTowardsV3(target.position);
         }
+        
     }
 }
