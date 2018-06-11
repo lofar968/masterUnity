@@ -2387,10 +2387,10 @@ MonoBehaviour:
   target: {fileID: 287515591}
   aiCount: 0
   CurrentSpeed: 0
-  movingRotSpeed: 100
-  movingMaxSpeed: 0
-  movingAccelleration: 0.5
-  stillRotSpeed: 5e+15
+  movingRotSpeed: 1
+  movingMaxSpeed: 100
+  movingAccelleration: 1.5
+  stillRotSpeed: 100
   stillMaxSpeed: 0
   stillAccelleration: 0
   AI_IdealRange: 100

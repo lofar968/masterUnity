@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-
-
 public class AiControlScript : MonoBehaviour {
 
     public Transform target;
@@ -103,34 +101,17 @@ public class AiControlScript : MonoBehaviour {
         else
         {
             m_MoveForwards();
-            m_RotateTowardsV3(SigmaPosRelativeToPlayer + target.position);
+            //  m_RotateTowardsV3(SigmaPosRelativeToPlayer + target.position);
+            SigmaDistanceRange = (S_Transform.position - myTransform.position).magnitude;
+            if ((S_Transform.position - myTransform.position).magnitude < CurrentSpeed * ((100 - acceleration) - (acceleration * (CurrentSpeed - 1) / 2)))
+                m_MoveForwards(); // actually m_Decellerate. Got formula from https://www.symbolab.com/solver/series-calculator/%5Csum_%7Bn%3D0%7D%5E%7B100%7D%20100%20-%201.5n
         }
-
+       
         Debug.DrawLine(target.position, target.position + SigmaPosRelativeToPlayer, Color.red);
     }
 
-
-<<<<<<< HEAD
+    
     bool s_RotateTowardsV3(Vector3 Target)
-=======
-<<<<<<< HEAD
-    void BasicBehaviour()
-    {
-        BlockA();
-        RotateTowardsPlayer();
-    }
-
-    void ShootPlayer()
-    {
-        _BulletFiringScript = new BulletFiringScript();
-
-    }
-
-    void RotateTowardsPlayer()
-=======
-    void s_RotateTowardsPlayer()
->>>>>>> 881aff4a94b6ed06c05e1d5c670c6788d50745e6
->>>>>>> 6598f3b77b1a8ebee7622bc90d06adc48c38e946
     {
         Vector3 playerDir = Target - transform.position;
         Vector3 newDir = Vector3.RotateTowards(myTransform.right * -1, playerDir, stillRotSpeed * Time.deltaTime, 0.0f);
@@ -140,10 +121,17 @@ public class AiControlScript : MonoBehaviour {
         else
             return false;
     }
+
+   /* void ShootPlayer()
+    {
+        _BulletFiringScript = new BulletFiringScript();
+    } */
+    
+    
     void m_RotateTowardsV3(Vector3 Target)
     {
         Vector3 playerDir = Target - transform.position;
-        Vector3 newDir = Vector3.RotateTowards(myTransform.right * -1, playerDir, movingRotSpeed, 0.0f);
+        Vector3 newDir = Vector3.RotateTowards(myTransform.right * -1, playerDir, movingRotSpeed * Time.deltaTime, 0.0f);
         transform.rotation = Quaternion.LookRotation(newDir);
     }
 
@@ -151,6 +139,10 @@ public class AiControlScript : MonoBehaviour {
     {
         rigidBody.velocity = CurrentSpeed * myTransform.forward;
         CurrentSpeed += movingAccelleration;
+        if (CurrentSpeed > movingMaxSpeed)
+            CurrentSpeed = movingMaxSpeed;
+        else if (CurrentSpeed < -movingMaxSpeed)
+            CurrentSpeed = -movingMaxSpeed;
     }
 
     private void FixedUpdate()
@@ -160,21 +152,12 @@ public class AiControlScript : MonoBehaviour {
             BlockA();
         else
         {
-
-
             Debug.DrawLine(transform.position, target.position);
-
-
-
-<<<<<<< HEAD
-        
-=======
-            rigidBody.velocity = velocity;
             childTransform.position = myTransform.position;
->>>>>>> 881aff4a94b6ed06c05e1d5c670c6788d50745e6
 
 
             s_RotateTowardsV3(target.position);
+            Debug.Log("out of block A");
         }
         
     }
