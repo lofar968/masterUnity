@@ -30,14 +30,16 @@ public class AiControlScript : MonoBehaviour {
     //"state" variables
     private bool isMoving = false;
     private bool isInBlockA = true;
+    private bool SlowingDown = false;
     //Sigma vars
     private float DeltaDistance_SigmaAi;
     public float SigmaDistanceRange; //from idealRange
     private GameObject S_Obj;
     private Transform S_Transform;
-    private float SigmaDistanceFromPlayer;
+    public float SigmaDistanceFromPlayer;
     public GameObject EmptyTransform;
     public Vector3 SigmaPosRelativeToPlayer;
+    private float DistanceTraveledOnDecelleratingNow;
 
     public GameObject child;
     //Distances
@@ -100,11 +102,17 @@ public class AiControlScript : MonoBehaviour {
         }
         else
         {
-            m_MoveForwards();
+            if ((S_Transform.position - myTransform.position).magnitude >= AI_IdealPositionLeeway / 2 && !SlowingDown)
+                m_MoveForwards();
+            else
+                SlowingDown = true;
             //  m_RotateTowardsV3(SigmaPosRelativeToPlayer + target.position);
-            SigmaDistanceRange = (S_Transform.position - myTransform.position).magnitude;
-            if ((S_Transform.position - myTransform.position).magnitude < CurrentSpeed * ((100 - acceleration) - (acceleration * (CurrentSpeed - 1) / 2)))
-                m_MoveForwards(); // actually m_Decellerate. Got formula from https://www.symbolab.com/solver/series-calculator/%5Csum_%7Bn%3D0%7D%5E%7B100%7D%20100%20-%201.5n
+            if (SlowingDown)
+            {
+                m_Decellerate();
+                if (!SlowingDown && (S_Transform.position - myTransform.position).magnitude <= AI_IdealPositionLeeway)
+                    isInBlockA = false;
+            }
         }
        
         Debug.DrawLine(target.position, target.position + SigmaPosRelativeToPlayer, Color.red);
@@ -114,7 +122,7 @@ public class AiControlScript : MonoBehaviour {
     bool s_RotateTowardsV3(Vector3 Target)
     {
         Vector3 playerDir = Target - transform.position;
-        Vector3 newDir = Vector3.RotateTowards(myTransform.right * -1, playerDir, stillRotSpeed * Time.deltaTime, 0.0f);
+        Vector3 newDir = Vector3.RotateTowards(myTransform.right * -1, playerDir, stillRotSpeed, 285.0f);
         transform.rotation = Quaternion.LookRotation(newDir);
         if (Vector3.Angle(myTransform.forward, SigmaPosRelativeToPlayer + target.position - myTransform.position) == 0)
             return true;
@@ -131,7 +139,7 @@ public class AiControlScript : MonoBehaviour {
     void m_RotateTowardsV3(Vector3 Target)
     {
         Vector3 playerDir = Target - transform.position;
-        Vector3 newDir = Vector3.RotateTowards(myTransform.right * -1, playerDir, movingRotSpeed * Time.deltaTime, 0.0f);
+        Vector3 newDir = Vector3.RotateTowards(myTransform.right * -1, playerDir, movingRotSpeed * Time.deltaTime, 2.1f);
         transform.rotation = Quaternion.LookRotation(newDir);
     }
 
@@ -143,6 +151,16 @@ public class AiControlScript : MonoBehaviour {
             CurrentSpeed = movingMaxSpeed;
         else if (CurrentSpeed < -movingMaxSpeed)
             CurrentSpeed = -movingMaxSpeed;
+    }
+    void m_Decellerate()
+    {
+        CurrentSpeed -= movingAccelleration;
+        if (CurrentSpeed <= 0)
+        {
+            CurrentSpeed = 0;
+            SlowingDown = false;
+        }
+        rigidBody.velocity = CurrentSpeed * myTransform.forward;
     }
 
     private void FixedUpdate()

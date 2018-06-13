@@ -213,10 +213,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc4570afae945a4eaf5098f66891bc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletSpeed: 100
+  BulletSpeed: 10
   DelayBetweenShots: 0.75
   Bullet: {fileID: 0}
-  BulletLifetime: 5
+  BulletLifetime: 0
   TransformOutOfGun: 10
 --- !u!23 &72935493
 MeshRenderer:
@@ -405,11 +405,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f105bd4b0552e0d4bb7cd73c1d4976c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VolumeSlider: {fileID: 2063515551}
-  Mute_texture: {fileID: 2800000, guid: 675d266b3e4e7434e92d156127892687, type: 3}
-  one_arc_texture: {fileID: 2800000, guid: 59d66986c50d838478fa71150d476116, type: 3}
-  two_arc_texture: {fileID: 2800000, guid: f95e86761638eed468aa718043372eb7, type: 3}
-  three_arc_texture: {fileID: 2800000, guid: 9c3003e3f2b134d49ba09dd023312315, type: 3}
+  VolumeSlider: {fileID: 0}
+  Mute_texture: {fileID: 0}
+  one_arc_texture: {fileID: 0}
+  two_arc_texture: {fileID: 0}
+  three_arc_texture: {fileID: 0}
 --- !u!114 &132776250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -866,7 +866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5dd1aa3fdd6d74797fc388c0e4c8e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assignedString: 
+  assignedString: hello
   TextObj: {fileID: 195622445}
   T: {fileID: 195622447}
   SaveStringAs: Forward Thrust
@@ -1895,7 +1895,6 @@ MonoBehaviour:
   - {fileID: 40596433}
   - {fileID: 1652410702}
   - {fileID: 883769783}
-  - {fileID: 1045669690}
 --- !u!114 &564254489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2387,16 +2386,17 @@ MonoBehaviour:
   target: {fileID: 287515591}
   aiCount: 0
   CurrentSpeed: 0
-  movingRotSpeed: 1
+  movingRotSpeed: 1000
   movingMaxSpeed: 100
-  movingAccelleration: 1.5
-  stillRotSpeed: 100
-  stillMaxSpeed: 0
-  stillAccelleration: 0
-  AI_IdealRange: 100
-  AI_RangeLeeway: 25
-  AI_IdealPositionLeeway: 10
-  SigmaDistanceRange: 1
+  movingAccelleration: 20
+  stillRotSpeed: 0.01
+  stillMaxSpeed: 20
+  stillAccelleration: 5
+  AI_IdealRange: 150
+  AI_RangeLeeway: 50
+  AI_IdealPositionLeeway: 25
+  SigmaDistanceRange: 10
+  SigmaDistanceFromPlayer: 0
   EmptyTransform: {fileID: 1210820161}
   SigmaPosRelativeToPlayer: {x: 0, y: 0, z: 0}
   child: {fileID: 1394837033}
@@ -2739,6 +2739,7 @@ GameObject:
   m_Component:
   - component: {fileID: 972137920}
   - component: {fileID: 972137921}
+  - component: {fileID: 972137922}
   m_Layer: 5
   m_Name: Sens_slider
   m_TagString: Untagged
@@ -2815,6 +2816,24 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &972137922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 972137919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 525994fb571daac4ca732b20346d4a67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ThisSlider: {fileID: 972137921}
+  SaveAs: Sensitivity
+  DefaultLoadedValue: 0.8
+  Slider_related_object: {fileID: 0}
+  SendTo_SRO_ToUpdate: 
+  SendTo_SRO_argument: 0
+  SendArgument: 0
 --- !u!1 &1004256869
 GameObject:
   m_ObjectHideFlags: 0
@@ -2889,6 +2908,104 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1004256869}
+--- !u!1 &1011062985
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1011062986}
+  - component: {fileID: 1011062990}
+  - component: {fileID: 1011062989}
+  - component: {fileID: 1011062988}
+  - component: {fileID: 1011062987}
+  m_Layer: 0
+  m_Name: laser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1011062986
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1011062985}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -289.1, z: 0}
+  m_LocalScale: {x: 0.05374652, y: 289.09622, z: 0.05374654}
+  m_Children: []
+  m_Father: {fileID: 1427470987}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1011062987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1011062985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a805ed5905d53b4caa455724b467014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rend: {fileID: 0}
+--- !u!23 &1011062988
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1011062985}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 89ba8b562e0fae04cb88b87e03d6f9de, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!136 &1011062989
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1011062985}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1011062990
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1011062985}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1045592935
 GameObject:
   m_ObjectHideFlags: 0
@@ -4066,11 +4183,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 525994fb571daac4ca732b20346d4a67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThisSlider: {fileID: 1252124902}
-  SaveAs: Music_Volume
-  DefaultLoadedValue: 1
-  Slider_related_object: {fileID: 2090632940}
-  SendTo_SRO_ToUpdate: Change_icon
+  ThisSlider: {fileID: 0}
+  SaveAs: 
+  DefaultLoadedValue: 0
+  Slider_related_object: {fileID: 0}
+  SendTo_SRO_ToUpdate: 
   SendTo_SRO_argument: 0
   SendArgument: 0
 --- !u!224 &1252124904
@@ -4575,6 +4692,105 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1410949705}
+--- !u!1 &1427470983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1427470987}
+  - component: {fileID: 1427470986}
+  - component: {fileID: 1427470985}
+  - component: {fileID: 1427470984}
+  - component: {fileID: 1427470988}
+  m_Layer: 0
+  m_Name: LaserCube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &1427470984
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1427470983}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!65 &1427470985
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1427470983}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1427470986
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1427470983}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1427470987
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1427470983}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 289.1, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_Children:
+  - {fileID: 1011062986}
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1427470988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1427470983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7474a39d1273ca40924fd4416115f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 287515591}
+  myTransform: {fileID: 1427470987}
 --- !u!1 &1434731916
 GameObject:
   m_ObjectHideFlags: 0
@@ -5058,8 +5274,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1507932390}
   m_LocalRotation: {x: 0.5215381, y: -0.5215381, z: -0.47749138, w: 0.47749138}
-  m_LocalPosition: {x: 4.55998, y: 0, z: 8.870036}
-  m_LocalScale: {x: -2.993207, y: -2.9932053, z: -0.49044025}
+  m_LocalPosition: {x: 4.55998, y: -0, z: 8.870038}
+  m_LocalScale: {x: -2.9932098, y: -3.091363, z: -0.50652355}
   m_Children:
   - {fileID: 162591089}
   m_Father: {fileID: 287515591}
@@ -5237,7 +5453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b17a26a3b430274a80b2d3ede67019e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerEntity: {fileID: 1708419036}
+  PlayerEntity: {fileID: 0}
 --- !u!1 &1599868373
 GameObject:
   m_ObjectHideFlags: 0
@@ -5662,7 +5878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc0a21af9b66ff843806f65da3f608d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ValueToLoad: Sound_volume
+  ValueToLoad: 
 --- !u!82 &1708419038
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5761,14 +5977,14 @@ MonoBehaviour:
   SidewaysAxisIs_posNeg: 1
   UpwardsAxisIs_posNeg: 1
   Answer_Faces_Vars: 32
-  RotateSpeed: 100
-  TurnSpeed: 500
+  RotateSpeed: 50
+  TurnSpeed: 50
   MaxSpeed: 50
   Accelleration: 5
   CurrentSpeed: 0
   Mouse_X_Distance: 0
   Mouse_Y_Distance: 0
-  Delta_Mouse_Position: 1
+  Delta_Mouse_Position: 0.8
   Sens_slider: {fileID: 972137921}
   crosshair: {fileID: 1856444659}
 --- !u!54 &1708419041
@@ -6378,11 +6594,11 @@ MonoBehaviour:
   added_transform: {x: 0, y: 0, z: 0}
   transfrom: {x: 0, y: 0, z: 0}
   Sens_slider: {fileID: 972137921}
-  DMP: 1
-  multiply_DMP_by: 0.275
+  DMP: 0.8
+  multiply_DMP_by: 0.006
   addToPrevious: 0
   MultiplyAllBy: 1
-  ShipMaxTurnSpeed: 0
+  ShipMaxTurnSpeed: 50
 --- !u!114 &1856444662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6981,11 +7197,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 525994fb571daac4ca732b20346d4a67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThisSlider: {fileID: 2063515551}
-  SaveAs: Sound_volume
-  DefaultLoadedValue: 1
-  Slider_related_object: {fileID: 132776247}
-  SendTo_SRO_ToUpdate: Change_icon
+  ThisSlider: {fileID: 0}
+  SaveAs: 
+  DefaultLoadedValue: 0
+  Slider_related_object: {fileID: 0}
+  SendTo_SRO_ToUpdate: 
   SendTo_SRO_argument: 0
   SendArgument: 0
 --- !u!224 &2063515553
@@ -7056,9 +7272,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c9dcefbe509ddd40a49edf2e23e91cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MusicSlider: {fileID: 1252124902}
-  Mute_texture: {fileID: 2800000, guid: 35e1c18e9cb27534b81075e9295e92d3, type: 3}
-  active_texture: {fileID: 2800000, guid: 08978ec276b8a25458add0fe6ebc3cba, type: 3}
+  MusicSlider: {fileID: 0}
+  Mute_texture: {fileID: 0}
+  active_texture: {fileID: 0}
 --- !u!114 &2090632943
 MonoBehaviour:
   m_ObjectHideFlags: 0

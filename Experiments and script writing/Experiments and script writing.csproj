@@ -308,11 +308,13 @@
     <Compile Include="Assets\scripts\Cursor_Movement_Script.cs" />
     <Compile Include="Assets\scripts\General_Scene_Manager.cs" />
     <Compile Include="Assets\scripts\PauseMenuControl.cs" />
+    <Compile Include="Assets\scripts\Rendering_script.cs" />
     <Compile Include="Assets\scripts\SendMessageToGM.cs" />
     <Compile Include="Assets\scripts\ShipControlScript.cs" />
     <Compile Include="Assets\scripts\TellGM_GoTo_MainMenu.cs" />
     <Compile Include="Assets\scripts\TextUpdateScript.cs" />
     <Compile Include="Assets\scripts\ToggleCursor.cs" />
+    <Compile Include="Assets\scripts\TurnToFacePlayer.cs" />
     <Compile Include="Assets\scripts\z_Music_icon_changer.cs" />
     <Compile Include="Assets\scripts\z_Volume_icon_changer.cs" />
   </ItemGroup>
