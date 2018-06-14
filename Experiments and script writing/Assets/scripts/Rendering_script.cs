@@ -21,7 +21,7 @@ public class Rendering_script : MonoBehaviour {
     }
 
     // Toggle the Object's visibility each second.
-    void Update()
+    void FixedUpdate()
     {
         if (isActive)
         {
@@ -35,7 +35,7 @@ public class Rendering_script : MonoBehaviour {
                 rend.enabled = false;
                 Emmiter.SendMessage("Stop_Turning");
             }
-            if (activeTimeInFrames == 200)
+            if (activeTimeInFrames == 190)
             {
                 Real_Laser.SetActive(true);
                 activeTimeInFrames = 0;

@@ -19,7 +19,7 @@ public class _BulletFiringScript : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         TimeElapsed += Time.deltaTime;
         if (TimeElapsed >= DelayBetweenShots)
         {

@@ -16,7 +16,7 @@ public class Deactivate_In_Time : MonoBehaviour {
     }
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if(isActive)
         {
             ++EnabledFrameCount;
