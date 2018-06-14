@@ -3,21 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Rendering_script : MonoBehaviour {
-        public Renderer rend;
+    public Renderer rend;
+    public bool isActive = false;
+    public int activeTimeInFrames = 0;
+    public GameObject Real_Laser;
+    public GameObject Emmiter;
 
-        void Start()
+    void Start()
+    {
+        rend = GetComponent<Renderer>();
+        rend.enabled = false;
+    }
+
+    void Activate()
+    {
+        isActive = true;
+    }
+
+    // Toggle the Object's visibility each second.
+    void Update()
+    {
+        if (isActive)
         {
-            rend = GetComponent<Renderer>();
-            rend.enabled = true;
+            ++activeTimeInFrames;
+            if (activeTimeInFrames <= 120)
+                rend.enabled = (activeTimeInFrames % 60) - 30 <= 0;
+            else if (activeTimeInFrames <= 180)
+                rend.enabled = (activeTimeInFrames % 6) - 3 <= 0;
+            else
+            {
+                rend.enabled = false;
+                Emmiter.SendMessage("Stop_Turning");
+            }
+            if (activeTimeInFrames == 200)
+            {
+                Real_Laser.SetActive(true);
+                activeTimeInFrames = 0;
+                isActive = false;
+            }
         }
-
-        // Toggle the Object's visibility each second.
-        void Update()
-        {
-            // Find out whether current second is odd or even
-            bool oddeven = Mathf.FloorToInt(Time.time) % 2 == 0;
-
-            // Enable renderer accordingly
-            rend.enabled = oddeven;
-        }
+    }
 }

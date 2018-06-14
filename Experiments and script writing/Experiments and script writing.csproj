@@ -306,7 +306,9 @@
     <Compile Include="Assets\scripts\BulletInitializationScript.cs" />
     <Compile Include="Assets\scripts\CubeTexture.cs" />
     <Compile Include="Assets\scripts\Cursor_Movement_Script.cs" />
+    <Compile Include="Assets\scripts\Deactivate_In_Time.cs" />
     <Compile Include="Assets\scripts\General_Scene_Manager.cs" />
+    <Compile Include="Assets\scripts\Laser_Activating_Script.cs" />
     <Compile Include="Assets\scripts\PauseMenuControl.cs" />
     <Compile Include="Assets\scripts\Rendering_script.cs" />
     <Compile Include="Assets\scripts\SendMessageToGM.cs" />
