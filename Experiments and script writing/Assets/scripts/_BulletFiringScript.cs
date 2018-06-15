@@ -13,7 +13,6 @@ public class _BulletFiringScript : MonoBehaviour {
     public float TransformOutOfGun = 10f;
 	// Use this for initialization
 	void Start () {
-        Bullet = GameObject.FindWithTag("Bullet");
         TimeElapsed = DelayBetweenShots;
         T = GetComponent<Transform>();
     }
